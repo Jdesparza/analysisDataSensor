@@ -1,0 +1,19 @@
+<div class="home-container">
+    <div class="card-sensor" *ngFor="let item of listSensors">
+        <a routerLink="{{item.route}}">
+            <div class="title-container">
+                <p>Sensor</p>
+                <i class="{{item.icon}}"></i>
+            </div>
+            <div class="description-container">
+                <div class="info-sensor">
+                    <p class="name-sensor">{{item.sensor}}</p>
+                    <p class="model-smartphone">{{item.modelSmartphone}}</p>
+                </div>
+                <div class="analisis-container">
+                    <p class="analisis-sensor">{{item.analisis}} %</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

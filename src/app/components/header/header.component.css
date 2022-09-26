@@ -1,0 +1,28 @@
+.border-white {
+    border: 1px solid white;
+}
+.title-nav {
+    border-right: 1px solid white;
+}
+nav {
+    height: 100%;
+    background-image: linear-gradient(-225deg, #4553a0 0%, #59aed2 51%, #4ec4b6 100%);
+}
+.navbar-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.navbar-btn:hover {
+    background-color: rgba(255, 255, 255, .2);
+    border-radius: 15%;
+}
+.btn_login {
+    margin-left: auto;
+}
+.subtitle-sensor {
+    color: white;
+    font-size: 23px;
+}

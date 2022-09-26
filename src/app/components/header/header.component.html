@@ -1,0 +1,19 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark px-2">
+    <div class="navbar-btn p-2 me-3 text-light" (click)="SideNavToggled()">
+        <i class="fa-solid fa-bars" *ngIf="menuStatus == false"></i>
+        <i class="fa-solid fa-xmark" *ngIf="menuStatus == true"></i>
+    </div>
+
+    <a class="title-nav navbar-brand px-2" routerLink="/">Analysis DataSensor</a>
+    <span class="subtitle-sensor">{{nameSensorService.nombreSensor}}</span>
+
+    <div class="profile-logo dropstart btn_login">
+        <button class="btn btn-outline-light dropdown-toggle" data-bs-toggle="dropdown">
+            Admin
+        </button>
+        <ul class="dropdown-menu dropdown-menu-light">
+            <li><a routerLink="login" class="dropdown-item">Cerrar Sesión</a></li>
+        </ul>
+    </div>
+
+</nav>
