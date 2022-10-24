@@ -1,1 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+    --color-blue-primary: rgba(77, 119, 179, 1);
+    --color-blue-secondary: rgba(77, 119, 179, .5);
+    --color-red-primary: #dc3545;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #F8F8F8;
+}
+body::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(159, 194, 254, 0.5);
+}
+body::-webkit-scrollbar-thumb {
+    background: var(--color-blue-primary);
+}
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: var(--color-blue-primary);
+    --bs-dropdown-link-color: var(--color-blue-primary);
+    --bs-dropdown-link-hover-color: var(--color-blue-primary);
+}

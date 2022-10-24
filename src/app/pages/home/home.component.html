@@ -1,17 +1,26 @@
 <div class="home-container">
-    <div class="card-sensor" *ngFor="let item of listSensors">
+    <div class="card-sensor" *ngFor="let item of tempListSensorsCard">
         <a routerLink="{{item.route}}">
             <div class="title-container">
                 <p>Sensor</p>
-                <i class="{{item.icon}}"></i>
+                <!--<i class="{{item.icon}} border-red"></i>-->
+                <span><img src="assets/icon-png/{{item.icon}}.png" alt="sensor {{item.sensor}}"></span>
             </div>
             <div class="description-container">
                 <div class="info-sensor">
                     <p class="name-sensor">{{item.sensor}}</p>
-                    <p class="model-smartphone">{{item.modelSmartphone}}</p>
+                    <div *ngIf="item.modelSmartphone != ''">
+                        <p class="model-smartphone">{{item.modelSmartphone}}</p>
+                        <p class="model-smartphone-title">Modelo Smartphone</p>
+                    </div>
+                    <p class="model-smartphone sin-model-smartphone" *ngIf="item.modelSmartphone == ''">Sin Modelo Smartphone</p>
                 </div>
                 <div class="analisis-container">
-                    <p class="analisis-sensor">{{item.analisis}} %</p>
+                    <div class="analisis-sensor" *ngIf="item.analisis != null">
+                        <p class="error-percentage">{{item.analisis | number: '.0-3'}} %</p>
+                        <p class="error-percentage-title">Error (%)</p>
+                    </div>
+                    <p class="analisis-sensor sin-analisis-sensor" *ngIf="item.analisis == null">N/A</p>
                 </div>
             </div>
         </a>

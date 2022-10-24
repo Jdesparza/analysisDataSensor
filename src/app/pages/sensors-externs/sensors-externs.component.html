@@ -1,0 +1,210 @@
+
+<div class="overflow-register">
+    <div class="register-container" [ngClass]="{'register-container-isView': mostrarForm}">
+        <div class="img-register-sensor">
+            <img src="assets/svg/add_sensores_externos_2.svg" alt="add sensores externos">
+        </div>
+        <div class="form-container ">
+            <div class="title-form ">
+                <i class="fa-regular fa-square-plus" *ngIf="!isEdit"></i>
+                <i class="fa-regular fa-pen-to-square" *ngIf="isEdit"></i>
+                <p>Registrar Sensor Externo</p>
+            </div>
+            <form [formGroup]="formSenExterno" (ngSubmit)="onSubmit()">
+                <div class="form-part-1">
+                    <div class="input-container-1" *ngFor="let sensor of tempListSensorsRadio1">
+                        <input type="radio" [attr.disabled]="sensor.isDisable ? false : null" [checked]="sensor.check" class="btn-check" name="options" id="{{sensor.key}}" (click)="isOptionRadio(sensor.name, sensor.typeCal)">
+                        <label class="btn btn-radio" for="{{sensor.key}}">{{sensor.name}}</label>
+                    </div>
+                </div>
+                <div class="form-part-2">
+                    <!--input-group-text-->
+                    <div class="input-group flex-nowrap">
+                        <i class="fa-solid fa-pen-nib input-group-text"></i>
+                        <input class="form-control" type="text" name="maker" placeholder="Nombre fabricante" formControlName="fabricante">
+                    </div>
+                    <div class="type-calculo-1" 
+                        *ngIf="this.optionSensor != 'Acelerómetro' && 
+                        this.optionSensor != 'Giroscopio' && 
+                        this.optionSensor != 'Magnetómetro' && 
+                        this.optionSensor != 'Barómetro' && 
+                        this.optionSensor != 'Micrófono' &&
+                        this.optionSensor != 'GPS' &&
+                        this.optionSensor != 'Cámara'">
+                        <div class="input-group flex-nowrap">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <input class="form-control" type="number" name="calculation_1" placeholder="Cálculo 1" formControlName="cal1_value1">
+                        </div>
+                        <div class="input-group flex-nowrap">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <input class="form-control" type="number" name="calculation_2" placeholder="Cálculo 2" formControlName="cal2_value1">
+                        </div>
+                    </div>
+                    <div class="type-calculo-2" 
+                        *ngIf="this.optionSensor == 'Barómetro' || 
+                        this.optionSensor == 'Micrófono' || 
+                        this.optionSensor == 'Cámara'">
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <span class="input-group-text">Calculo 1</span>
+                            <input type="number" aria-label="caltype2_1_1" class="form-control" placeholder="{{type2_cal1_input1_placeholder}}" formControlName="cal1_value1">
+                            <input type="number" aria-label="caltype2_1_2" class="form-control" placeholder="{{type2_cal1_input2_placeholder}}" formControlName="cal1_value2">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <span class="input-group-text">Calculo 2</span>
+                            <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="caltype2_2_1" class="form-control" placeholder="{{type2_cal2_input1_placeholder}}" formControlName="cal2_value1">
+                            <input type="number" [required]="isRequiredInput" aria-label="caltype2_2_2" class="form-control" placeholder="{{type2_cal2_input2_placeholder}}" formControlName="cal2_value2">
+                        </div>
+                    </div>
+                    <div class="type-calculo-3" 
+                        *ngIf="this.optionSensor == 'Acelerómetro' || 
+                        this.optionSensor == 'Giroscopio' || 
+                        this.optionSensor == 'Magnetómetro'">
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <span class="input-group-text">Ejes Calculo 1</span>
+                            <input type="number" aria-label="eje_x_1" class="form-control" placeholder="X" formControlName="cal1_value1">
+                            <input type="number" aria-label="eje_y_1" class="form-control" placeholder="Y" formControlName="cal1_value2">
+                            <input type="number" aria-label="eje_z_1" class="form-control" placeholder="Z" formControlName="cal1_value3">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <span class="input-group-text">Ejes Calculo 2</span>
+                            <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="eje_x_2" class="form-control" placeholder="X" formControlName="cal2_value1">
+                            <input type="number" [required]="isRequiredInput"  aria-label="eje_y_2" class="form-control" placeholder="Y" formControlName="cal2_value2">
+                            <input type="number" [required]="isRequiredInput"  aria-label="eje_z_2" class="form-control" placeholder="Z" formControlName="cal2_value3">
+                        </div>
+                    </div>
+                    <div class="type-calculo-4" *ngIf="this.optionSensor == 'GPS'">
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <span class="input-group-text">Calculo 1</span>
+                            <input type="number" aria-label="latitud_1" class="form-control" placeholder="Latitud" formControlName="cal1_value1">
+                            <input type="number" aria-label="longitud_1" class="form-control" placeholder="Longitud" formControlName="cal1_value2">
+                            <input type="number" aria-label="altitud_1" class="form-control" placeholder="Altitud" formControlName="cal1_value3">
+                            <input type="number" aria-label="precision_1" class="form-control" placeholder="Precisión" formControlName="cal1_value4">
+                            <input type="number" aria-label="velocidad_1" class="form-control" placeholder="Velocidad" formControlName="cal1_value5">
+                        </div>
+                        <div class="input-group">
+                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <span class="input-group-text">Calculo 2</span>
+                            <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="latitud_2" class="form-control" placeholder="Latitud" formControlName="cal2_value1">
+                            <input type="number" [required]="isRequiredInput" aria-label="longitud_2" class="form-control" placeholder="Longitud" formControlName="cal2_value2">
+                            <input type="number" [required]="isRequiredInput" aria-label="altitud_2" class="form-control" placeholder="Altitud" formControlName="cal2_value3">
+                            <input type="number" [required]="isRequiredInput" aria-label="precision_2" class="form-control" placeholder="Precisión" formControlName="cal2_value4">
+                            <input type="number" [required]="isRequiredInput" aria-label="velocidad_2" class="form-control" placeholder="Velocidad" formControlName="cal2_value5">
+                        </div>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-form-cancel" [disabled]="isBtnSubmitActive" type="button" (click)="btnCancelForm()">Cancelar</button>
+                    <button class="btn btn-form-submit" [disabled]="formSenExterno.invalid || isBtnSubmitActive" type="submit">{{btnValidFormN}}</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="list-sensors-externs-container" *ngIf="listSensorsCard.length > 0">
+    <div class="title-sensors-externs">
+        <i class="fa-regular fa-rectangle-list"></i>
+        <p >Datos Sensores Externos</p>
+    </div>
+    <div class="card-sensor-item-container">
+        <div class="card-sensor" *ngFor="let item of listSensorsCard">
+            <div class="btn-group dropstart btn-option">
+                <span class="btn-option-span" data-bs-toggle="dropdown"><i class="fa-solid fa-ellipsis-vertical"></i></span>
+                <ul class="dropdown-menu ul-menu-option">
+                    <li><button class="dropdown-item" (click)="isUpdate(item)">
+                        <i class="fa-regular fa-pen-to-square"></i>
+                        Editar
+                    </button></li>
+                    <li><button class="dropdown-item" (click)="isDelete(item)">
+                        <i class="fa-solid fa-trash"></i>
+                        Eliminar
+                    </button></li>
+                </ul>
+            </div>
+            <div class="card-sensor-header"></div>
+            <div class="img-container">
+                <img src="assets/icon-png/{{item.icon}}.png" alt="sensor {{item.sensor}}">
+            </div>
+            <div class="title">
+                <p class="title-detail">{{item.sensor}}</p>
+                <p class="title-name">Sensor Externo</p>
+            </div>
+            <div class="subtitle">
+                <p class="subtitle-detail">{{item.fabricante}}</p>
+                <p class="subtitle-name">Fabricante</p>
+            </div>
+            <div class="cal-container">
+                <div class="cal">
+                    <div class="datos-cal-container">
+                        <div class="datos-cal" *ngFor="let cal1 of item.cal1; index as i">
+                            <p class="cal-result">{{cal1 | number: '.0-1' }}</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'De Proximidad'">Proximidad</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'De Luz'">Iluminación</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Podómetro'">Pasos</p>
+
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Barómetro'">Presión</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'Barómetro'">Altitud</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Micrófono'">Mín</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'Micrófono'">Máx</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Cámara'">Ancho</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'Cámara'">Altura</p>
+
+                            <div *ngIf="item.sensor == 'Acelerómetro' || item.sensor == 'Giroscopio' || item.sensor == 'Magnetómetro'">
+                                <p class="cal-title-data" *ngIf="i == 0">Eje X</p>
+                                <p class="cal-title-data" *ngIf="i == 1">Eje Y</p>
+                                <p class="cal-title-data" *ngIf="i == 2">Eje Z</p>
+                            </div>
+
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'GPS'">Latitud</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'GPS'">Longitud</p>
+                            <p class="cal-title-data" *ngIf="i == 2 && item.sensor == 'GPS'">Altitud</p>
+                            <p class="cal-title-data" *ngIf="i == 3 && item.sensor == 'GPS'">Precisión</p>
+                            <p class="cal-title-data" *ngIf="i == 4 && item.sensor == 'GPS'">Velocidad</p>
+                        </div>
+                    </div>
+                    <p class="cal-title">Cálculo 1</p>
+                </div>
+                <div class="cal">
+                    <div class="datos-cal-container" *ngIf="item.cal2.length > 0">
+                        <div class="datos-cal" *ngFor="let cal2 of item.cal2; index as i">
+                            <p class="cal-result">{{cal2 | number: '.0-1' }}</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'De Proximidad'">Proximidad</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'De Luz'">Iluminación</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Podómetro'">Pasos</p>
+
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Barómetro'">Presión</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'Barómetro'">Altitud</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Micrófono'">Mín</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'Micrófono'">Máx</p>
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'Cámara'">Ancho</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'Cámara'">Altura</p>
+
+                            <div *ngIf="item.sensor == 'Acelerómetro' || item.sensor == 'Giroscopio' || item.sensor == 'Magnetómetro'">
+                                <p class="cal-title-data" *ngIf="i == 0">Eje X</p>
+                                <p class="cal-title-data" *ngIf="i == 1">Eje Y</p>
+                                <p class="cal-title-data" *ngIf="i == 2">Eje Z</p>
+                            </div>
+
+                            <p class="cal-title-data" *ngIf="i == 0 && item.sensor == 'GPS'">Latitud</p>
+                            <p class="cal-title-data" *ngIf="i == 1 && item.sensor == 'GPS'">Longitud</p>
+                            <p class="cal-title-data" *ngIf="i == 2 && item.sensor == 'GPS'">Altitud</p>
+                            <p class="cal-title-data" *ngIf="i == 3 && item.sensor == 'GPS'">Precisión</p>
+                            <p class="cal-title-data" *ngIf="i == 4 && item.sensor == 'GPS'">Velocidad</p>
+                        </div>
+                    </div>
+                    <div class="datos-cal-container" *ngIf="item.cal2.length == 0">
+                        <div class="datos-cal">
+                            <p class="cal-result">000</p>
+                            <p class="cal-title-data">N/A</p>
+                        </div>
+                    </div>
+                    <p class="cal-title">Cálculo 2</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

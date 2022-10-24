@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,6 +18,14 @@ import { CamaraComponent } from './pages/sensors/camara/camara.component';
 import { BarometroComponent } from './pages/sensors/barometro/barometro.component';
 import { GpsComponent } from './pages/sensors/gps/gps.component';
 import { MicrofonoComponent } from './pages/sensors/microfono/microfono.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { ReactiveFormsModule } from '@angular/forms';
+import { SensorsExternsComponent } from './pages/sensors-externs/sensors-externs.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,10 +44,18 @@ import { MicrofonoComponent } from './pages/sensors/microfono/microfono.componen
     BarometroComponent,
     GpsComponent,
     MicrofonoComponent,
+    SensorsExternsComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    MatTooltipModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore()),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

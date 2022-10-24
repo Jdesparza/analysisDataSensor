@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NameSensorService } from './services/name-sensor.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,17 @@ export class AppComponent {
   title = 'AnalysisDataSensor';
   sideNavStatus: boolean = false;
 
-  constructor(public nameSensorService: NameSensorService) { 
+  isLogin: boolean = false;
+
+  constructor(private authService: AuthService) { 
+    this.authService.stateAuth().subscribe(res => {
+      if (res?.uid != null) {
+        this.isLogin = true;
+        //console.log(res?.uid);
+      } else {
+        this.isLogin = false;
+      }
+    });
   }
 
   ngOnInit(): void {

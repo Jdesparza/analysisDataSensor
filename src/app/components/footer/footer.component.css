@@ -1,0 +1,123 @@
+
+.border-white {
+    border: 1px solid white;
+}
+.container-footer {
+    width: 100%;
+    height: 100%;
+    *background-color: #003F72;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white;
+    background-image: linear-gradient(rgba(0, 75, 137, 0.8) 75%, rgba(0, 63, 114, 1)), url('../../../assets/img/utpl_cruz.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.container-info {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    padding-block: 40px;
+}
+.logo-utpl {
+    text-decoration: none;
+}
+img {
+    width: 170px;
+}
+.container-utpl {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.container-utpl .icon-contact {
+    color: #FEBE10;
+    width: 30px;
+    height: 26px;
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container-contact-utpl {
+    padding-left: 10px;
+}
+.country {
+    font-size: 17px;
+    font-weight: 500;
+    margin-block: 30px 10px;
+}
+.contact {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    color: #FEBE10;
+}
+.contact p {
+    font-size: 14px;
+    margin-bottom: 0;
+}
+.container-followUs {
+    min-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-followUs p {
+    margin-bottom: 0;
+    padding: 30px 30px 10px 30px;
+    font-size: 18px;
+    font-weight: 500;
+}
+.followUs {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+}
+.icon-followUs {
+    font-size: 27px;
+    width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+/**/
+.container-copyright {
+    width: calc(100% - 8rem);
+    height: 40px;
+    color: white;
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #F8F8F8;
+}
+.copy-icon {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+    justify-content: center;
+}
+.copy-icon i {
+    color: #FEBE10;
+}
+.container-copyright p {
+    margin-bottom: 0;
+    font-size: 15px;
+}

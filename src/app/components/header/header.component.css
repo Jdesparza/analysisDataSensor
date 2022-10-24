@@ -1,12 +1,10 @@
 .border-white {
     border: 1px solid white;
 }
-.title-nav {
-    border-right: 1px solid white;
-}
 nav {
     height: 100%;
-    background-image: linear-gradient(-225deg, #4553a0 0%, #59aed2 51%, #4ec4b6 100%);
+    color: var(--color-blue-primary);
+    *background-image: linear-gradient(-225deg, #4553a0 0%, #59aed2 51%, #4ec4b6 100%);
 }
 .navbar-btn {
     display: flex;
@@ -14,15 +12,33 @@ nav {
     align-items: center;
     font-size: 1.5rem;
     cursor: pointer;
+    margin-left: 3px;
 }
 .navbar-btn:hover {
-    background-color: rgba(255, 255, 255, .2);
+    background-color: rgba(110, 110, 110, 0.2);
     border-radius: 15%;
 }
-.btn_login {
+.title-nav {
+    border-right: 1.5px solid rgba(110, 110, 110, 0.2);
+}
+.title-nav, .subtitle-nav {
+    color: var(--color-blue-primary);
+    font-weight: 400;
+    font-size: 20px;
+}
+.btn-login-container {
     margin-left: auto;
 }
-.subtitle-sensor {
+.btn-login-container .btn-admin {
+    border-color: var(--color-blue-primary);
+    color: var(--color-blue-primary);
+    font-weight: 400;
+}
+.btn-login-container .btn-admin:hover {
+    background-color: var(--color-blue-primary);
     color: white;
-    font-size: 23px;
+}
+.btn-login-container ul li {
+    *background-color: rgba(77, 119, 179, .2);
+    color: var(--color-blue-primary);
 }

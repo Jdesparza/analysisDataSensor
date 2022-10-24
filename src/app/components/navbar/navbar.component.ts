@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NameSensorService } from 'src/app/services/name-sensor.service';
+import { NameSensorService } from 'src/app/services/name-sensor/name-sensor.service';
 
 
 @Component({
@@ -16,61 +16,61 @@ export class NavbarComponent implements OnInit {
     {
       number: '1',
       name: 'Acelerómetro',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_acelerometro',
       route: 'acelerometro'
     },
     {
       number: '2',
       name: 'Proximidad',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_proximidad',
       route: 'proximidad'
     },
     {
       number: '3',
       name: 'Luz',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_luz',
       route: 'luz'
     },
     {
       number: '4',
       name: 'Giroscopio',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_giroscopio',
       route: 'giroscopio'
     },
     {
       number: '5',
       name: 'Magnetómetro',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_magnetometro',
       route: 'magnetometro'
     },
     {
       number: '6',
       name: 'Podómetro',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_podometro',
       route: 'podometro'
     },
     {
       number: '7',
       name: 'Cámara',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_camara',
       route: 'camara'
     },
     {
       number: '8',
       name: 'Barómetro',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_barometro',
       route: 'barometro'
     },
     {
       number: '9',
       name: 'GPS',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_gps',
       route: 'gps'
     },
     {
       number: '10',
       name: 'Micrófono',
-      icon: 'fa-solid fa-house',
+      icon: 'ic_microfono',
       route: 'microfono'
     },
   ];

@@ -12,62 +12,81 @@ import { MagnetometroComponent } from './pages/sensors/magnetometro/magnetometro
 import { MicrofonoComponent } from './pages/sensors/microfono/microfono.component';
 import { PodometroComponent } from './pages/sensors/podometro/podometro.component';
 import { ProximidadComponent } from './pages/sensors/proximidad/proximidad.component';
+import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
+import { SensorsExternsComponent } from './pages/sensors-externs/sensors-externs.component';
 
 const routes: Routes = [
   {
     path: '',
     component: HomeComponent,
-    title: 'Home'
+    title: 'Home',
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'acelerometro',
     component: AcelerometroComponent,
-    title: 'Sensor Acelerómetro'
+    title: 'Sensor Acelerómetro',
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'proximidad',
     component: ProximidadComponent,
-    title: 'Sensor Proximidad'
+    title: 'Sensor Proximidad',
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'luz',
     component: LuzComponent,
-    title: 'Sensor Luz'
+    title: 'Sensor Luz',
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'giroscopio',
-    component: GiroscopioComponent
+    component: GiroscopioComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'magnetometro',
-    component: MagnetometroComponent
+    component: MagnetometroComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'podometro',
-    component: PodometroComponent
+    component: PodometroComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'camara',
-    component: CamaraComponent
+    component: CamaraComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'barometro',
-    component: BarometroComponent
+    component: BarometroComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'gps',
-    component: GpsComponent
+    component: GpsComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'microfono',
-    component: MicrofonoComponent
+    component: MicrofonoComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    ...canActivate(() => redirectLoggedInTo(['/home']))
   },
   {
-    path: '**', pathMatch: 'full', redirectTo: '/'
+    path: 'sensores_externos',
+    component: SensorsExternsComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
+  },
+  {
+    path: '**', pathMatch: 'full', redirectTo: ''
   }
 ];
 

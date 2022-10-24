@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NameSensorService } from 'src/app/services/name-sensor.service';
+import { NameSensorService } from 'src/app/services/name-sensor/name-sensor.service';
 
 @Component({
   selector: 'app-camara',

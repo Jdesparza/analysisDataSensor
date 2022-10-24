@@ -1,14 +1,16 @@
-<div class="container-fluid g-0" *ngIf="nameSensorService.nombreSensor != 'login'">
+<div class="container-fluid g-0" *ngIf="isLogin == true">
     <app-header (sideNavToggled)="sideNavStatus = $event;"></app-header>
 
     <main>
         <app-navbar [sideNavStatus]="sideNavStatus" [ngClass]="{'app-navbar-open': sideNavStatus}"></app-navbar>
         <div class="content-view" [ngClass]="{'content-view-shrink': sideNavStatus}">
-            <router-outlet></router-outlet>
+            <div class="content-outlet">
+                <router-outlet></router-outlet>
+            </div>
+            <app-footer></app-footer>
         </div>
     </main>
-    
 </div>
-<div *ngIf="nameSensorService.nombreSensor == 'login'">
+<div *ngIf="isLogin == false">
     <router-outlet></router-outlet>
 </div>
