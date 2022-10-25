@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import SensorExterno from 'src/app/interfaces/sensor-externo';
 import { CrudSensorExternoService } from 'src/app/services/crud-sensor-externo/crud-sensor-externo.service';
 import { NameSensorService } from 'src/app/services/name-sensor/name-sensor.service';
 import { SensoresSmartphonesService } from 'src/app/services/sensores-smartphones/sensores-smartphones.service';
 import { deepCopy } from '@angular-devkit/core/src/utils/object';
+import { ErrorRateService } from 'src/app/services/error-rate-model/error-rate-model.service';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_acelerometro',
       modelSmartphone: '',
-      route: 'acelerometro'
+      route: 'Sensor/Acelerometro'
     },
     {
       id: '2',
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_proximidad',
       modelSmartphone: '',
-      route: 'proximidad'
+      route: 'Sensor/Proximidad'
     },
     {
       id: '3',
@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_luz',
       modelSmartphone: '',
-      route: 'luz'
+      route: 'Sensor/Luz'
     },
     {
       id: '4',
@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_giroscopio',
       modelSmartphone: '',
-      route: 'giroscopio'
+      route: 'Sensor/Giroscopio'
     },
     {
       id: '5',
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_magnetometro',
       modelSmartphone: '',
-      route: 'magnetometro'
+      route: 'Sensor/Magnetometro'
     },
     {
       id: '6',
@@ -59,7 +59,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_podometro',
       modelSmartphone: '',
-      route: 'podometro'
+      route: 'Sensor/Podometro'
     },
     {
       id: '7',
@@ -67,7 +67,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_camara',
       modelSmartphone: '',
-      route: 'camara'
+      route: 'Sensor/Camara'
     },
     {
       id: '8',
@@ -75,7 +75,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_barometro',
       modelSmartphone: '',
-      route: 'barometro'
+      route: 'Sensor/Barometro'
     },
     {
       id: '9',
@@ -83,7 +83,7 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_gps',
       modelSmartphone: '',
-      route: 'gps'
+      route: 'Sensor/GPS'
     },
     {
       id: '10',
@@ -91,7 +91,15 @@ export class HomeComponent implements OnInit {
       analisis: null,
       icon: 'ic_microfono',
       modelSmartphone: '',
-      route: 'microfono'
+      route: 'Sensor/Microfono'
+    },
+    {
+      id: '11',
+      sensor: 'Termómetro',
+      analisis: null,
+      icon: 'ic_termometro',
+      modelSmartphone: '',
+      route: 'Sensor/Termometro'
     }
   ];
   tempListSensorsCard: any[] = [];
@@ -110,11 +118,13 @@ export class HomeComponent implements OnInit {
   listSenBarometro: any;
   listSenGPS: any;
   listSenMicrofono: any;
+  listSenTermometro: any;
 
   constructor(
     private nameSensorService: NameSensorService,
     private sensoresSmartphoneService: SensoresSmartphonesService,
     private crudSensorExternoService: CrudSensorExternoService,
+    private errorRateModelService: ErrorRateService,
   ) { }
 
   ngOnInit(): void {
@@ -133,7 +143,8 @@ export class HomeComponent implements OnInit {
     //numCalc Sensor externo
     let calSensorExterno: any;
     let sensorFalloMediaCalculada: any;
-    let smartMenosFallos: { modelo: any; fallo: any; };
+    let smartMenosFallos;
+    let dataObjects: [{modelo: string; marca: string; fallo: number;}];
     
     
     this.listSenProximidad = sensorsSmartphoneD.filter((res: {sensorProximidad: any;}) => 
@@ -142,9 +153,11 @@ export class HomeComponent implements OnInit {
       res.sensorLuz.isExists == true && (res.sensorLuz.iluminacion_1 != undefined || res.sensorLuz.iluminacion_2 != undefined));
     this.listSenPodometro = sensorsSmartphoneD.filter((res: {sensorPodometro: any;}) => 
       res.sensorPodometro.isExists == true && (res.sensorPodometro.calPasos_10 != undefined || res.sensorPodometro.calPasos_15 != undefined));
+    this.listSenTermometro = sensorsSmartphoneD.filter((res: {sensorTermometro: any;}) => 
+      res.sensorTermometro.isExists == true && (res.sensorTermometro.temperatura_1 != undefined || res.sensorTermometro.temperatura_2 != undefined));
+
     this.listSenCamara = sensorsSmartphoneD.filter((res: {sensorCamara: any;}) => 
       res.sensorCamara.isExists == true && (res.sensorCamara.camTrasera != undefined || res.sensorCamara.camFrontal != undefined));
-
     this.listSenBarometro = sensorsSmartphoneD.filter((res: {sensorBarometro: any;}) => 
       res.sensorBarometro.isExists == true && (res.sensorBarometro.presion_1 != undefined || res.sensorBarometro.presion_2 != undefined));
     this.listSenMicrofono = sensorsSmartphoneD.filter((res: {sensorMicrofono: any;}) => 
@@ -165,8 +178,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenProximidad.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'De Proximidad'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenProximidad, calSensorExterno, 'De Proximidad');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenProximidad, calSensorExterno, 'De Proximidad');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Proximidad', smartMenosFallos);
       }
@@ -176,8 +190,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenLuz.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'De Luz'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenLuz, calSensorExterno, 'De Luz');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenLuz, calSensorExterno, 'De Luz');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Luz', smartMenosFallos);
       }
@@ -187,10 +202,23 @@ export class HomeComponent implements OnInit {
     if (this.listSenPodometro.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Podómetro'});
       if(calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenPodometro, calSensorExterno, 'Podómetro');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenPodometro, calSensorExterno, 'Podómetro');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Podómetro', smartMenosFallos);
+      }
+    }
+
+    // Termómetro
+    if (this.listSenTermometro.length > 0) {
+      calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Termómetro'});
+      if(calSensorExterno != undefined) {
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenTermometro, calSensorExterno, 'Termómetro');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
+
+        this.registrarDatosCard('Termómetro', smartMenosFallos);
       }
     }
 
@@ -198,8 +226,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenCamara.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Cámara'});
       if(calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenCamara, calSensorExterno, 'Cámara');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenCamara, calSensorExterno, 'Cámara');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Cámara', smartMenosFallos);
       }
@@ -209,8 +238,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenBarometro.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Barómetro'});
       if(calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenBarometro, calSensorExterno, 'Barómetro');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenBarometro, calSensorExterno, 'Barómetro');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Barómetro', smartMenosFallos);
       }
@@ -220,8 +250,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenMicrofono.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Micrófono'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenMicrofono, calSensorExterno, 'Micrófono');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenMicrofono, calSensorExterno, 'Micrófono');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Micrófono', smartMenosFallos);
       }
@@ -231,8 +262,11 @@ export class HomeComponent implements OnInit {
     if (this.listSenAcelerometro.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Acelerómetro'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenAcelerometro, calSensorExterno, 'Acelerómetro');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenAcelerometro, calSensorExterno, 'Acelerómetro');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
+
+        console.log(smartMenosFallos);
 
         this.registrarDatosCard('Acelerómetro', smartMenosFallos);
       }
@@ -242,8 +276,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenGiroscopio.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Giroscopio'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenGiroscopio, calSensorExterno, 'Giroscopio');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenGiroscopio, calSensorExterno, 'Giroscopio');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Giroscopio', smartMenosFallos);
       }
@@ -253,8 +288,9 @@ export class HomeComponent implements OnInit {
     if (this.listSenMagnetometro.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Magnetómetro'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenMagnetometro, calSensorExterno, 'Magnetómetro');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenMagnetometro, calSensorExterno, 'Magnetómetro');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Magnetómetro', smartMenosFallos);
       }
@@ -264,167 +300,19 @@ export class HomeComponent implements OnInit {
     if (this.listSenGPS.length > 0) {
       calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'GPS'});
       if (calSensorExterno != undefined) {
-        sensorFalloMediaCalculada = this.smartphoneMediaEquation(this.listSenGPS, calSensorExterno, 'GPS');
-        smartMenosFallos = this.smartphoneMenosFallos(sensorFalloMediaCalculada);
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenGPS, calSensorExterno, 'GPS');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('GPS', smartMenosFallos);
       }
     }
   }
 
-  smartphoneMediaEquation(sensorList: any, sensorExt: any, nameSensor: string) {
-
-    let senSmartCal1Fallo: any;
-    let senSmartCal2Fallo: any;
-    let media;
-    let sensorFalloMediaCalculada: [{ modelo: string; fallo: number}] = [{modelo: '', fallo: 0,}];
-    let camMP;
-    let mediaSE_Cal;
-    let mediaSmart_Cal;
-
-    //if(nameSensor == 'Cámara') console.log(sensorList);
-
-    for (var i = 0; i < sensorList.length; i++) {
-      senSmartCal1Fallo = null;
-      senSmartCal2Fallo = null;
-      if(nameSensor == 'Cámara') camMP = null;
-      else if(nameSensor == 'Acelerómetro' || nameSensor == 'Giroscopio' || nameSensor == 'Magnetómetro') {
-        mediaSE_Cal = null; 
-        mediaSmart_Cal = null 
-      };
-
-      if (nameSensor == 'De Proximidad') {
-        if (sensorList[i].sensorProximidad.proximidad_1 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorProximidad.proximidad_1);
-        else if (sensorList[i].sensorProximidad.proximidad_2 != undefined && sensorExt.cal2 .length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorProximidad.proximidad_2);
-      } else if(nameSensor == 'De Luz') {
-        if (sensorList[i].sensorLuz.iluminacion_1 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorLuz.iluminacion_1);
-        else if (sensorList[i].sensorLuz.iluminacion_2 != undefined && sensorExt.cal2.length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorLuz.iluminacion_2);
-      } else if(nameSensor == 'Podómetro') {
-        if (sensorList[i].sensorPodometro.calPasos_10 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorPodometro.calPasos_10);
-        else if (sensorList[i].sensorPodometro.calPasos_15 != undefined && sensorExt.cal2.length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorPodometro.calPasos_15);
-      } else if(nameSensor == 'Cámara') {
-        if (sensorList[i].sensorCamara.camTrasera != undefined) {
-          camMP = (sensorExt.cal1[0] * sensorExt.cal1[1]) / 1000000.0;
-          senSmartCal1Fallo = this.equationPorcentajeError(camMP, sensorList[i].sensorCamara.camTrasera.megapixels);
-        }
-        else if (sensorList[i].sensorCamara.camFrontal != undefined && sensorExt.cal2.length > 0) {
-          camMP = (sensorExt.cal2[0] * sensorExt.cal2[1]) / 1000000.0;
-          senSmartCal2Fallo = this.equationPorcentajeError(camMP, sensorList[i].sensorCamara.camFrontal.megapixels);
-        }
-      } else if(nameSensor == 'Barómetro') {
-        if (sensorList[i].sensorBarometro.presion_1 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorBarometro.presion_1.presion);
-        else if (sensorList[i].sensorBarometro.presion_2 != undefined && sensorExt.cal2.length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorBarometro.presion_2.presion);
-      } else if(nameSensor == 'Micrófono') {
-        if (sensorList[i].sensorMicrofono.calSonido_1 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[1], sensorList[i].sensorMicrofono.calSonido_1.max);
-        else if (sensorList[i].sensorMicrofono.calSonido_2 != undefined && sensorExt.cal2.length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[1], sensorList[i].sensorMicrofono.calSonido_2.max);
-      } else if(nameSensor == 'Acelerómetro') {
-        if (sensorList[i].sensorAcelerometro.aceleracion_1 != undefined) {
-          mediaSE_Cal = (sensorExt.cal1[0] + sensorExt.cal1[1] + sensorExt.cal1[2]) / 3;
-          mediaSmart_Cal = (sensorList[i].sensorAcelerometro.aceleracion_1.x + sensorList[i].sensorAcelerometro.aceleracion_1.y + sensorList[i].sensorAcelerometro.aceleracion_1.z) / 3;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-        else if (sensorList[i].sensorAcelerometro.aceleracion_2 != undefined && sensorExt.cal2.length > 0) {
-          mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1] + sensorExt.cal2[2]) / 3;
-          mediaSmart_Cal = (sensorList[i].sensorAcelerometro.aceleracion_2.x + sensorList[i].sensorAcelerometro.aceleracion_2.y + sensorList[i].sensorAcelerometro.aceleracion_2.z) / 3;
-          senSmartCal2Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-      } else if(nameSensor == 'Giroscopio') {
-        if (sensorList[i].sensorGiroscopio.rotacion_1 != undefined) {
-          mediaSE_Cal = (sensorExt.cal1[0] + sensorExt.cal1[1] + sensorExt.cal1[2]) / 3;
-          mediaSmart_Cal = (sensorList[i].sensorGiroscopio.rotacion_1.x + sensorList[i].sensorGiroscopio.rotacion_1.y + sensorList[i].sensorGiroscopio.rotacion_1.z) / 3;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-        else if (sensorList[i].sensorGiroscopio.rotacion_2 != undefined && sensorExt.cal2.length > 0) {
-          mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1] + sensorExt.cal2[2]) / 3;
-          mediaSmart_Cal = (sensorList[i].sensorGiroscopio.rotacion_2.x + sensorList[i].sensorGiroscopio.rotacion_2.y + sensorList[i].sensorGiroscopio.rotacion_2.z) / 3;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-      } else if(nameSensor == 'Magnetómetro') {
-        if (sensorList[i].sensorMagnetometro.magnetismo_1 != undefined) {
-          mediaSE_Cal = (sensorExt.cal1[0] + sensorExt.cal1[1] + sensorExt.cal1[2]) / 3;
-          mediaSmart_Cal = (sensorList[i].sensorMagnetometro.magnetismo_1.x + sensorList[i].sensorMagnetometro.magnetismo_1.y + sensorList[i].sensorMagnetometro.magnetismo_1.z) / 3;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-        else if (sensorList[i].sensorMagnetometro.magnetismo_2 != undefined && sensorExt.cal2.length > 0) {
-          mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1] + sensorExt.cal2[2]) / 3;
-          mediaSmart_Cal = (sensorList[i].sensorMagnetometro.magnetismo_2.x + sensorList[i].sensorMagnetometro.magnetismo_2.y + sensorList[i].sensorMagnetometro.magnetismo_2.z) / 3;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-      } else if(nameSensor == 'GPS') {
-        if (sensorList[i].sensorGPS.ubicacion_1 != undefined) {
-          mediaSE_Cal = (sensorExt.cal1[0] + sensorExt.cal1[1]) / 2;
-          mediaSmart_Cal = (sensorList[i].sensorGPS.ubicacion_1.latitud + sensorList[i].sensorGPS.ubicacion_1.longitud) / 2;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-        else if (sensorList[i].sensorGPS.ubicacion_2 != undefined && sensorExt.cal2.length > 0) {
-          mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1]) / 2;
-          mediaSmart_Cal = (sensorList[i].sensorGPS.ubicacion_2.latitud + sensorList[i].sensorGPS.ubicacion_2.longitud) / 2;
-          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
-        }
-      }
-
-      // Media Aritmética
-      if (senSmartCal1Fallo != null && senSmartCal2Fallo != null) {
-        media = (senSmartCal1Fallo + senSmartCal2Fallo) / 2;
-      } else if (senSmartCal1Fallo != null && senSmartCal2Fallo == null) {
-        media = senSmartCal1Fallo;
-      } else if (senSmartCal1Fallo == null && senSmartCal2Fallo != null) {
-        media = senSmartCal2Fallo;
-      }
-
-      // Guardar Datos
-      sensorFalloMediaCalculada[i] = {
-        modelo: sensorList[i].modelo,
-        fallo: media,
-      };
-      //console.log(nameSensor + "\nFallo Cal1: " + senSmartCal1Fallo + "\nFallo Cal2: " + senSmartCal2Fallo + "\nMedia: " + media);
-    }
-    return sensorFalloMediaCalculada;
-  }
-
-  equationPorcentajeError(sensorExterno: any, sensorSmartphone: any) {
-    let error = ((sensorSmartphone - sensorExterno) / sensorExterno) * 100.00;
-    error = Math.abs(error);
-    if (error > 100) error = 100;
-    else if (isNaN(error)) error = 0;
-    //console.log("sE: " + sensorExterno + "\nsS: " + sensorSmartphone + "\n %: " + error);
-    return error;
-  }
-
-  smartphoneMenosFallos(sensorMediaFalloCalculada: any) {
-    let numMenor = Number.MAX_VALUE;
-    let valorCal = null;
-    let posicion = 0;
-
-    for (var i = 0; i < sensorMediaFalloCalculada.length; i++) {
-      valorCal = sensorMediaFalloCalculada[i].fallo;
-      if (valorCal == 0) {
-        return sensorMediaFalloCalculada[i];
-      } else {
-        if(valorCal < numMenor) {
-          numMenor = valorCal;
-          posicion = i;
-        }
-      }
-    }
-    //console.log(sensorMediaFalloCalculada);
-    return sensorMediaFalloCalculada[posicion];
-  }
-
   registrarDatosCard(nameSensor: string, smartMenosFallos: any) {
     this.tempListSensorsCard = this.tempListSensorsCard.map(sCard => 
-      sCard.sensor === nameSensor? {...sCard, modelSmartphone: smartMenosFallos.modelo, 
-        analisis: smartMenosFallos.fallo}  : sCard
+      sCard.sensor === nameSensor? {...sCard, modelSmartphone: smartMenosFallos[0].modelo, 
+        analisis: smartMenosFallos[0].fallo}  : sCard
     );
   }
 

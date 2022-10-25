@@ -8,12 +8,12 @@ import { ErrorRateService } from 'src/app/services/error-rate-model/error-rate-m
 import { CrudSensorExternoService } from 'src/app/services/crud-sensor-externo/crud-sensor-externo.service';
 
 @Component({
-  selector: 'app-magnetometro',
-  templateUrl: './magnetometro.component.html',
-  styleUrls: ['./magnetometro.component.css']
+  selector: 'app-termometro',
+  templateUrl: './termometro.component.html',
+  styleUrls: ['./termometro.component.css']
 })
-export class MagnetometroComponent implements OnInit {
-  infoSensorSmartphone: string[] = ['sensorMagnetometro', 'Magnetómetro']
+export class TermometroComponent implements OnInit {
+  infoSensorSmartphone: string[] = ['sensorTermometro', 'Termómetro']
 
   listSensorSmartphone: any;
   tempListSensorSmartphone: any;
@@ -32,7 +32,7 @@ export class MagnetometroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nameSensorService.nombreSensor = "Sensor Magnetómetro";
+    this.nameSensorService.nombreSensor = "Sensor Termómetro";
     this.data();
     this.buscadorChange();
   }
@@ -92,5 +92,4 @@ export class MagnetometroComponent implements OnInit {
 
     return smartMenosFallos[0].fallo;
   }
-
 }

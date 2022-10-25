@@ -1,1 +1,102 @@
-<p>magnetometro works!</p>
+<app-graph-sensors [infoSensorSmartphone]="infoSensorSmartphone"></app-graph-sensors>
+
+<!--Table-->
+<div class="title-container">
+    <i class="fa-solid fa-list"></i>
+    <p>Datos de Smartphones</p>
+</div>
+<div class="search-container">
+    <input type="text" [formControl]="controlBuscador" placeholder="Buscar...">
+    <button *ngIf="isCloseSearch" type="button" (click)="resetSearch()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<table class="table"> 
+    <thead>
+        <tr>
+            <th scope="col" rowspan="2">Modelo</th>
+            <th scope="col" rowspan="2">Marca</th>
+            <th scope="col" rowspan="2">Error (%)</th>
+            <th scope="col" rowspan="2">Fabricante</th>
+            <th scope="col" rowspan="2">Versión</th>
+            <th scope="col" rowspan="2" title="Rango Máximo">Rango Máx.</th>
+            <th scope="col" rowspan="2">Potencia</th>
+            <th scope="col" rowspan="2">Resolución</th>
+            <th scope="col" title="Cálculo 1" colspan="3">Magnetismo 1</th>
+            <th scope="col" title="Cálculo 2" colspan="3">Magnetismo 2</th>
+        </tr>
+        <tr>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">Z</th>
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">Z</th>
+        </tr>
+        
+    </thead>
+    <tbody *ngIf="tempListSensorSmartphone != undefined">
+        <tr *ngFor="let dato of tempListSensorSmartphone">
+            <td>{{ dato.modelo }}</td>
+            <td>{{ dato.fabricante }}</td>
+            <td *ngIf="calSensorExterno != undefined && (dato.sensorMagnetometro.magnetismo_1 != undefined || dato.sensorMagnetometro.magnetismo_2 != undefined)">
+                <span matTooltip="{{ errorPercentage(dato) }}">{{ errorPercentage(dato) | number: '.0-4' }}</span>
+            </td>
+            <td *ngIf="calSensorExterno == undefined || (dato.sensorMagnetometro.magnetismo_1 == undefined && dato.sensorMagnetometro.magnetismo_2 == undefined)">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.fabricante != undefined">{{ dato.sensorMagnetometro.fabricante }}</td>
+            <td *ngIf="dato.sensorMagnetometro.fabricante == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.version != undefined">{{ dato.sensorMagnetometro.version }}</td>
+            <td *ngIf="dato.sensorMagnetometro.version == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.rangoMax != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.rangoMax }}">{{ dato.sensorMagnetometro.rangoMax | number: '.0-5' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.rangoMax == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.potencia != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.potencia }}">{{ dato.sensorMagnetometro.potencia | number: '.0-5' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.potencia == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.resolucion != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.resolucion }}">{{ dato.sensorMagnetometro.resolucion | number: '.0-5' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.resolucion == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_1 != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.magnetismo_1.x }}">{{ dato.sensorMagnetometro.magnetismo_1.x | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_1 == undefined">N/A</td>
+            
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_1 != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.magnetismo_1.y }}">{{ dato.sensorMagnetometro.magnetismo_1.y | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_1 == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_1 != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.magnetismo_1.z }}">{{ dato.sensorMagnetometro.magnetismo_1.z | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_1 == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_2 != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.magnetismo_2.x }}">{{ dato.sensorMagnetometro.magnetismo_2.x | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_2 == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_2 != undefined">
+                <span matTooltip="{{ dato.sensorMagnetometro.magnetismo_2.y }}">{{ dato.sensorMagnetometro.magnetismo_2.y | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_2 == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_2 != undefined">
+               <span matTooltip="{{ dato.sensorMagnetometro.magnetismo_2.z }}">{{ dato.sensorMagnetometro.magnetismo_2.z | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorMagnetometro.magnetismo_2 == undefined">N/A</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="tempListSensorSmartphone == 0 || tempListSensorSmartphone == undefined">
+        <tr>
+            <td colspan="14">No hay Datos</td>
+        </tr>
+    </tbody>
+</table>

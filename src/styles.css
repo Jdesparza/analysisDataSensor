@@ -9,11 +9,12 @@ body {
     background-color: #F8F8F8;
 }
 body::-webkit-scrollbar {
-    width: 5px;
+    width: 8px;
     background: rgba(159, 194, 254, 0.5);
 }
 body::-webkit-scrollbar-thumb {
     background: var(--color-blue-primary);
+    border-radius: 5px;
 }
 .dropdown-menu {
     --bs-dropdown-link-active-bg: var(--color-blue-primary);

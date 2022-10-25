@@ -14,6 +14,7 @@ import { PodometroComponent } from './pages/sensors/podometro/podometro.componen
 import { ProximidadComponent } from './pages/sensors/proximidad/proximidad.component';
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { SensorsExternsComponent } from './pages/sensors-externs/sensors-externs.component';
+import { TermometroComponent } from './pages/sensors/termometro/termometro.component';
 
 const routes: Routes = [
   {
@@ -23,56 +24,61 @@ const routes: Routes = [
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'acelerometro',
+    path: 'Sensor/Acelerometro',
     component: AcelerometroComponent,
     title: 'Sensor Acelerómetro',
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'proximidad',
+    path: 'Sensor/Proximidad',
     component: ProximidadComponent,
     title: 'Sensor Proximidad',
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'luz',
+    path: 'Sensor/Luz',
     component: LuzComponent,
     title: 'Sensor Luz',
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'giroscopio',
+    path: 'Sensor/Giroscopio',
     component: GiroscopioComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'magnetometro',
+    path: 'Sensor/Magnetometro',
     component: MagnetometroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'podometro',
+    path: 'Sensor/Podometro',
     component: PodometroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'camara',
+    path: 'Sensor/Camara',
     component: CamaraComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'barometro',
+    path: 'Sensor/Barometro',
     component: BarometroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'gps',
+    path: 'Sensor/GPS',
     component: GpsComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
-    path: 'microfono',
+    path: 'Sensor/Microfono',
     component: MicrofonoComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
+  },
+  {
+    path: 'Sensor/Termometro',
+    component: TermometroComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {

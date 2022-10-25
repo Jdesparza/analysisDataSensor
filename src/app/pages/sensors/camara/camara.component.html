@@ -1,1 +1,77 @@
-<p>camara works!</p>
+<app-graph-sensors [infoSensorSmartphone]="infoSensorSmartphone"></app-graph-sensors>
+
+<!--Table-->
+<div class="title-container">
+    <i class="fa-solid fa-list"></i>
+    <p>Datos de Smartphones</p>
+</div>
+<div class="search-container">
+    <input type="text" [formControl]="controlBuscador" placeholder="Buscar...">
+    <button *ngIf="isCloseSearch" type="button" (click)="resetSearch()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<table class="table"> 
+    <thead>
+        <tr>
+            <th scope="col" rowspan="2">Modelo</th>
+            <th scope="col" rowspan="2">Marca</th>
+            <th scope="col" rowspan="2">Error (%)</th>
+            <th scope="col" title="Cálculo 1" colspan="3">Cámara Frontal</th>
+            <th scope="col" title="Cálculo 2" colspan="3">Cámara Trasera</th>
+        </tr>
+        <tr>
+            <th scope="col">Ancho</th>
+            <th scope="col">Altura</th>
+            <th scope="col">Resolución (MP)</th>
+            <th scope="col">Ancho</th>
+            <th scope="col">Altura</th>
+            <th scope="col">Resolución (MP)</th>
+        </tr>
+        
+    </thead>
+    <tbody *ngIf="tempListSensorSmartphone != undefined">
+        <tr *ngFor="let dato of tempListSensorSmartphone">
+            <td>{{ dato.modelo }}</td>
+            <td>{{ dato.fabricante }}</td>
+            <td *ngIf="calSensorExterno != undefined && (dato.sensorCamara.camFrontal != undefined || dato.sensorCamara.camTrasera != undefined)">
+                <span matTooltip="{{ errorPercentage(dato) }}">{{ errorPercentage(dato) | number: '.0-4' }}</span>
+            </td>
+            <td *ngIf="calSensorExterno == undefined || (dato.sensorCamara.camFrontal == undefined && dato.sensorCamara.camTrasera == undefined)">N/A</td>
+
+            <td *ngIf="dato.sensorCamara.camFrontal != undefined">
+                <span matTooltip="{{ dato.sensorCamara.camFrontal.ancho }}">{{ dato.sensorCamara.camFrontal.ancho | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorCamara.camFrontal == undefined">N/A</td>
+            
+            <td *ngIf="dato.sensorCamara.camFrontal != undefined">
+                <span matTooltip="{{ dato.sensorCamara.camFrontal.altura }}">{{ dato.sensorCamara.camFrontal.altura | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorCamara.camFrontal == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorCamara.camFrontal != undefined">
+                <span matTooltip="{{ dato.sensorCamara.camFrontal.resolucion }}">{{ dato.sensorCamara.camFrontal.resolucion | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorCamara.camFrontal == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorCamara.camTrasera != undefined">
+                <span matTooltip="{{ dato.sensorCamara.camTrasera.ancho }}">{{ dato.sensorCamara.camTrasera.ancho | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorCamara.camTrasera == undefined">N/A</td>
+            
+            <td *ngIf="dato.sensorCamara.camTrasera != undefined">
+                <span matTooltip="{{ dato.sensorCamara.camTrasera.altura }}">{{ dato.sensorCamara.camTrasera.altura | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorCamara.camTrasera == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorCamara.camTrasera != undefined">
+                <span matTooltip="{{ dato.sensorCamara.camTrasera.resolucion }}">{{ dato.sensorCamara.camTrasera.resolucion | number: '.0-2' }}</span>
+            </td>
+            <td *ngIf="dato.sensorCamara.camTrasera == undefined">N/A</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="tempListSensorSmartphone == 0 || tempListSensorSmartphone == undefined">
+        <tr>
+            <td colspan="9">No hay Datos</td>
+        </tr>
+    </tbody>
+</table>
+

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { NgChartsConfiguration, NgChartsModule } from 'ng2-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +27,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SensorsExternsComponent } from './pages/sensors-externs/sensors-externs.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { GraphSensorsComponent } from './components/graph-sensors/graph-sensors.component';
+import { TermometroComponent } from './pages/sensors/termometro/termometro.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MicrofonoComponent,
     SensorsExternsComponent,
     FooterComponent,
+    GraphSensorsComponent,
+    TermometroComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,9 +60,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgChartsModule,
   ],
-  providers: [],
+  providers: [{ provide: NgChartsConfiguration, useValue: { generateColors: false }}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

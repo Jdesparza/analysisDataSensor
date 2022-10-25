@@ -1,0 +1,74 @@
+<app-graph-sensors [infoSensorSmartphone]="infoSensorSmartphone"></app-graph-sensors>
+
+<!--Table-->
+<div class="title-container">
+    <i class="fa-solid fa-list"></i>
+    <p>Datos de Smartphones</p>
+</div>
+<div class="search-container">
+    <input type="text" [formControl]="controlBuscador" placeholder="Buscar...">
+    <button *ngIf="isCloseSearch" type="button" (click)="resetSearch()"><i class="fa-solid fa-xmark"></i></button>
+</div>
+<table class="table"> 
+    <thead>
+        <tr>
+            <th scope="col" rowspan="2">Modelo</th>
+            <th scope="col" rowspan="2">Marca</th>
+            <th scope="col" rowspan="2">Error (%)</th>
+            <th scope="col" rowspan="2">Fabricante</th>
+            <th scope="col" rowspan="2">Versión</th>
+            <th scope="col" rowspan="2" title="Rango Máximo">Rango Máx.</th>
+            <th scope="col" rowspan="2">Potencia</th>
+            <th scope="col" rowspan="2">Resolución</th>
+            <th scope="col" title="Cálculo 1">Temp. Ambiente 1</th>
+            <th scope="col" title="Cálculo 2">Temp. Ambiente 2</th>
+        </tr>
+        
+    </thead>
+    <tbody *ngIf="tempListSensorSmartphone != undefined">
+        <tr *ngFor="let dato of tempListSensorSmartphone">
+            <td>{{ dato.modelo }}</td>
+            <td>{{ dato.fabricante }}</td>
+            <td *ngIf="calSensorExterno != undefined && (dato.sensorTermometro.temperatura_1 != undefined || dato.sensorTermometro.temperatura_2 != undefined)">
+                <span matTooltip="{{ errorPercentage(dato) }}">{{ errorPercentage(dato) | number: '.0-4' }}</span>
+            </td>
+            <td *ngIf="calSensorExterno == undefined || (dato.sensorTermometro.temperatura_1 == undefined && dato.sensorTermometro.temperatura_2 == undefined)">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.fabricante != undefined">{{ dato.sensorTermometro.fabricante }}</td>
+            <td *ngIf="dato.sensorTermometro.fabricante == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.version != undefined">{{ dato.sensorTermometro.version }}</td>
+            <td *ngIf="dato.sensorTermometro.version == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.rangoMax != undefined">
+                <span matTooltip="{{ dato.sensorTermometro.rangoMax }}">{{ dato.sensorTermometro.rangoMax | number: '.0-5' }}</span>
+            </td>
+            <td *ngIf="dato.sensorTermometro.rangoMax == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.potencia != undefined">
+                <span matTooltip="{{ dato.sensorTermometro.potencia }}">{{ dato.sensorTermometro.potencia | number: '.0-5' }}</span>
+            </td>
+            <td *ngIf="dato.sensorTermometro.potencia == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.resolucion != undefined">
+                <span matTooltip="{{ dato.sensorTermometro.resolucion }}">{{ dato.sensorTermometro.resolucion | number: '.0-5' }}</span>
+            </td>
+            <td *ngIf="dato.sensorTermometro.resolucion == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.temperatura_1 != undefined">
+                <span matTooltip="{{ dato.sensorTermometro.temperatura_1 }}">{{ dato.sensorTermometro.temperatura_1 }}</span>
+            </td>
+            <td *ngIf="dato.sensorTermometro.temperatura_1 == undefined">N/A</td>
+
+            <td *ngIf="dato.sensorTermometro.temperatura_2 != undefined">
+                <span matTooltip="{{ dato.sensorTermometro.temperatura_2 }}">{{ dato.sensorTermometro.temperatura_2 }}</span>
+            </td>
+            <td *ngIf="dato.sensorTermometro.temperatura_2 == undefined">N/A</td>
+        </tr>
+    </tbody>
+    <tbody *ngIf="tempListSensorSmartphone == 0 || tempListSensorSmartphone == undefined">
+        <tr>
+            <td colspan="10">No hay Datos</td>
+        </tr>
+    </tbody>
+</table>

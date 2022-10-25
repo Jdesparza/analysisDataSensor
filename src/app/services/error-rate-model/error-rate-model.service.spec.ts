@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ErrorRateService } from './error-rate.service';
+import { ErrorRateService } from './error-rate-model.service';
 
 describe('ErrorRateService', () => {
   let service: ErrorRateService;

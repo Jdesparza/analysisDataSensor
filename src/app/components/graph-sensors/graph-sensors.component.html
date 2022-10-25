@@ -1,0 +1,39 @@
+<div class="title-container">
+    <i class="fa-solid fa-chart-column"></i>
+    <p>Gráfica Error (%) Smartphones</p>
+</div>
+<div class="container-grafic">
+    <div class="filters-grafic-container">
+        <div class="form-grafic-filter">
+            <p class="title-filter-container">Filtros</p>
+            <form [formGroup]="filterControlForm" (ngSubmit)="onSubmitGraficFilter()">
+                <p class="subtitle-filter-container">Mostrar por:</p>
+                <select class="form-select" aria-label="select_grafic_sort" formControlName="controlMarcaModelo">
+                    <option value="modelo">Modelo</option>
+                    <option value="marca">Marca</option>
+                </select>
+                <p class="subtitle-filter-container">Cantidad de datos:</p>
+                <div class="radio-amount-container">
+                    <div class="input-container-1" *ngFor="let cantMostrar of checkRadioFilter"> 
+                        <input type="radio" class="btn-check" value="{{cantMostrar.value}}" name="controlCantDatos" id="mostrar_{{cantMostrar.value}}" formControlName="controlCantDatos">
+                        <label class="btn btn-radio" for="mostrar_{{cantMostrar.value}}">{{ cantMostrar.value }}</label>
+                    </div>
+                </div>
+                <div class="btn-container">
+                    <button class="btn btn-form-submit" type="submit">Actualizar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="grafic-container-view">
+        <canvas baseChart
+            [data]="barChartData"
+            [options]="barChartOptions"
+            [plugins]="barChartPlugins"
+            [type]="barChartType"
+            >
+        </canvas>
+    </div>
+</div>
+
+

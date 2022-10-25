@@ -1,25 +1,7 @@
-<div class="container-grafic">
-    <div class="filters-grafic-container">
-        <p class="title-filter-container">Filtros</p>
-        <p class="subtitle-filter-container">Mostrar por:</p>
-        <select class="form-select" aria-label="select_grafic_sort">
-            <option value="modelo" selected>Modelo</option>
-            <option value="marca">Marca</option>
-        </select>
-        <p class="subtitle-filter-container">Cantidad de datos:</p>
-        <div class="radio-amount-container">
-            <div class="input-container-1" *ngFor="let cantMostrar of checkRadioFilter">
-                <input type="radio" [checked]="cantMostrar.check" class="btn-check" name="options" id="mostrar_{{cantMostrar.value}}">
-                <label class="btn btn-radio" for="mostrar_{{ cantMostrar.value }}">{{ cantMostrar.value }}</label>
-            </div>
-        </div>
-    </div>
-    <div class="grafic-container-view"></div>
-</div>
-
+<app-graph-sensors [infoSensorSmartphone]="infoSensorSmartphone"></app-graph-sensors>
 
 <!--Table-->
-<div class="title-table">
+<div class="title-container">
     <i class="fa-solid fa-list"></i>
     <p>Datos de Smartphones</p>
 </div>
@@ -51,14 +33,14 @@
         </tr>
         
     </thead>
-    <tbody>
-        <tr *ngFor="let dato of tempListSensorAcelerometro">
+    <tbody *ngIf="tempListSensorSmartphone != undefined">
+        <tr *ngFor="let dato of tempListSensorSmartphone">
             <td>{{ dato.modelo }}</td>
             <td>{{ dato.fabricante }}</td>
-            <td *ngIf="dato.sensorAcelerometro.aceleracion_1 != undefined || dato.sensorAcelerometro.aceleracion_2 != undefined">
+            <td *ngIf="calSensorExterno != undefined && (dato.sensorAcelerometro.aceleracion_1 != undefined || dato.sensorAcelerometro.aceleracion_2 != undefined)">
                 <span matTooltip="{{ errorPercentage(dato) }}">{{ errorPercentage(dato) | number: '.0-4' }}</span>
             </td>
-            <td *ngIf="dato.sensorAcelerometro.aceleracion_1 == undefined && dato.sensorAcelerometro.aceleracion_2 == undefined">N/A</td>
+            <td *ngIf="calSensorExterno == undefined || (dato.sensorAcelerometro.aceleracion_1 == undefined && dato.sensorAcelerometro.aceleracion_2 == undefined)">N/A</td>
 
             <td *ngIf="dato.sensorAcelerometro.fabricante != undefined">{{ dato.sensorAcelerometro.fabricante }}</td>
             <td *ngIf="dato.sensorAcelerometro.fabricante == undefined">N/A</td>
@@ -110,6 +92,11 @@
                <span matTooltip="{{ dato.sensorAcelerometro.aceleracion_2.z }}">{{ dato.sensorAcelerometro.aceleracion_2.z | number: '.0-2' }}</span>
             </td>
             <td *ngIf="dato.sensorAcelerometro.aceleracion_2 == undefined">N/A</td>
-
+        </tr>
+    </tbody>
+    <tbody *ngIf="tempListSensorSmartphone == 0 || tempListSensorSmartphone == undefined">
+        <tr>
+            <td colspan="14">No hay Datos</td>
+        </tr>
     </tbody>
 </table>

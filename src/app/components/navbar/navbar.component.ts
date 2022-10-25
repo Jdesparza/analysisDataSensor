@@ -17,62 +17,68 @@ export class NavbarComponent implements OnInit {
       number: '1',
       name: 'Acelerómetro',
       icon: 'ic_acelerometro',
-      route: 'acelerometro'
+      route: 'Sensor/Acelerometro'
     },
     {
       number: '2',
       name: 'Proximidad',
       icon: 'ic_proximidad',
-      route: 'proximidad'
+      route: 'Sensor/Proximidad'
     },
     {
       number: '3',
       name: 'Luz',
       icon: 'ic_luz',
-      route: 'luz'
+      route: 'Sensor/Luz'
     },
     {
       number: '4',
       name: 'Giroscopio',
       icon: 'ic_giroscopio',
-      route: 'giroscopio'
+      route: 'Sensor/Giroscopio'
     },
     {
       number: '5',
       name: 'Magnetómetro',
       icon: 'ic_magnetometro',
-      route: 'magnetometro'
+      route: 'Sensor/Magnetometro'
     },
     {
       number: '6',
       name: 'Podómetro',
       icon: 'ic_podometro',
-      route: 'podometro'
+      route: 'Sensor/Podometro'
     },
     {
       number: '7',
       name: 'Cámara',
       icon: 'ic_camara',
-      route: 'camara'
+      route: 'Sensor/Camara'
     },
     {
       number: '8',
       name: 'Barómetro',
       icon: 'ic_barometro',
-      route: 'barometro'
+      route: 'Sensor/Barometro'
     },
     {
       number: '9',
       name: 'GPS',
       icon: 'ic_gps',
-      route: 'gps'
+      route: 'Sensor/GPS'
     },
     {
       number: '10',
       name: 'Micrófono',
       icon: 'ic_microfono',
-      route: 'microfono'
+      route: 'Sensor/Microfono'
     },
+    {
+      number: '11',
+      name: 'Termómetro',
+      icon: 'ic_termometro',
+      route: 'Sensor/Termometro'
+    }
   ];
 
   constructor(private nameSensorService: NameSensorService) {}
