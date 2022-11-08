@@ -40,8 +40,7 @@ export class AcelerometroComponent implements OnInit {
 
   data() {
     this.crudSensorExternoService.getSensorExterno().subscribe(sensorsExterns => {
-      this.calSensorExterno  = sensorsExterns.find((senExt: { sensor: string; }) => {return senExt.sensor === this.infoSensorSmartphone[1]});;
-      //console.log(this.calSensorExterno);
+      this.calSensorExterno  = sensorsExterns.find((senExt: { sensor: string; }) => {return senExt.sensor === this.infoSensorSmartphone[1]});
     });
     //this.calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Acelerómetro'});
     this.sensoresSmartphoneService.getSensorSmartphoneExist(this.infoSensorSmartphone[0]).subscribe(sensorSmartphone => {
@@ -89,7 +88,6 @@ export class AcelerometroComponent implements OnInit {
 
     sensorFalloMediaCalculada = this.errorRateService.smartphoneMediaEquation([smartphone], this.calSensorExterno, this.infoSensorSmartphone[1]);
     smartMenosFallos = this.errorRateService.smartphoneMenosFallos(sensorFalloMediaCalculada);
-    //console.log(this.calSensorExterno);
 
     return smartMenosFallos[0].fallo;
   }

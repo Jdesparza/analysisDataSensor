@@ -75,13 +75,11 @@ export class GraphSensorsComponent implements OnInit {
 
   ngOnInit(): void {
     this.data();
-    //console.log(this.infoSensorSmartphone);
   }
 
   data() {
     this.crudSensorExternoService.getSensorExterno().subscribe(sensorsExterns => {
       this.calSensorExterno  = sensorsExterns.find((senExt: { sensor: string; }) => {return senExt.sensor === this.infoSensorSmartphone[1]});;
-      //console.log(this.calSensorExterno);
     });
     this.sensoresSmartphoneService.getSensorSmartphoneExist(this.infoSensorSmartphone[0]).subscribe(sensorSmartphone => {
       this.listSensorSmartphone = sensorSmartphone;
@@ -97,8 +95,6 @@ export class GraphSensorsComponent implements OnInit {
       this.marcaModeloForm = this.filterControlForm.value['controlMarcaModelo'];
       this.cantDatosMostrarForm = Number(this.filterControlForm.value['controlCantDatos']);
   
-      //console.log('Tipo: ' + this.marcaModeloForm + '\nCant: ' + this.cantDatosMostrarForm);
-
       this.graficSmartphoneModelMenosFallos();
     }
   }
@@ -120,7 +116,6 @@ export class GraphSensorsComponent implements OnInit {
 
       dataObjects = this.errorRateService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, this.marcaModeloForm);
       smartMenosFallos = this.errorRateService.smartphoneMenosFallos(dataObjects);
-      console.log(sensorFalloMediaCalculada)
 
       for (var i = 0; i < smartMenosFallos.length; i++) {
         if (this.marcaModeloForm == 'modelo') this.labelsGrafic[i] = smartMenosFallos[i].modelo.toUpperCase();
@@ -138,8 +133,6 @@ export class GraphSensorsComponent implements OnInit {
         ]
       };
     }
-
-    //console.log(dataObjects);
   }
 
   public barChartOptions: ChartConfiguration['options'] = {
