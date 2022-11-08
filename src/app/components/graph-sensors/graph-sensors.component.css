@@ -22,23 +22,18 @@
     margin-bottom: 0;
 }
 
-/*Grafic*/
 .container-grafic {
     width: 100%;
     margin-bottom: 35px;
     display: flex;
     gap: 20px;
-    *flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
 }
 .filters-grafic-container {
-    *width: 25%;
-    *width: calc(100% - 500px);
     width: 300px;
     min-height: 300px;
-    *height: 400px;
     border-radius: 10px;
     box-shadow: 1px 3px 6px rgba(235, 235, 235, 0.3);
     background-image: url(../../../assets/img/markus-winkler-IrRbSND5EUc-unsplash.jpg);
@@ -111,7 +106,6 @@
     display: block;
     width: calc(100% - 320px);
     min-width: 320px;
-    *min-height: 300px;
     background-color: white;
     padding: 15px;
     border-radius: 10px;

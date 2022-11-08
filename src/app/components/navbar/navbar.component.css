@@ -44,7 +44,6 @@ hr {
 .nav-list-item span img {
     width: 100%;
     filter: invert(57%) sepia(8%) saturate(307%) hue-rotate(189deg) brightness(80%) contrast(81%);
-    *object-fit: cover;
 }
 .active span img, .nav-list-open .nav-list-item:hover > span img {
     filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(241deg) brightness(103%) contrast(103%);
