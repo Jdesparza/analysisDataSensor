@@ -18,7 +18,5 @@ export class SensoresSmartphonesService {
     const sensor_externo_ref = collection(this.firestore, 'SensoresSmartphones');
     const q = query(sensor_externo_ref, where(`${tipoSensor}.isExists`, '==', true));
     return collectionData(q);
-
-    //ref => ref.where('isExists', '==', true)
   }
 }

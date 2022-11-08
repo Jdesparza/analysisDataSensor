@@ -1,9 +1,10 @@
 <nav class="navbar navbar-expand px-2">
-    <div class="navbar-btn p-2 me-3" (click)="SideNavToggled()">
+    <div class="navbar-btn p-2 me-2" (click)="SideNavToggled()">
         <i class="fa-solid fa-bars" *ngIf="menuStatus == false"></i>
         <i class="fa-solid fa-xmark" *ngIf="menuStatus == true"></i>
     </div>
 
+    <img class="logo-utpl-img" src="../../../assets/img/logo_utpl_gris.png.jpg" alt="logoUtpl">
     <a class="title-nav navbar-brand px-2" routerLink="/">Analysis DataSensor</a>
     <span class="navbar-brand subtitle-nav">{{nameSensorService.nombreSensor}}</span>
 

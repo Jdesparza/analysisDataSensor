@@ -15,6 +15,7 @@ import { ProximidadComponent } from './pages/sensors/proximidad/proximidad.compo
 import { canActivate, redirectUnauthorizedTo, redirectLoggedInTo } from '@angular/fire/auth-guard';
 import { SensorsExternsComponent } from './pages/sensors-externs/sensors-externs.component';
 import { TermometroComponent } from './pages/sensors/termometro/termometro.component';
+import { RitmoCardiacoComponent } from './pages/sensors/ritmo-cardiaco/ritmo-cardiaco.component';
 
 const routes: Routes = [
   {
@@ -82,12 +83,17 @@ const routes: Routes = [
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
+    path: 'Sensor/Ritmo-Cardiaco',
+    component: RitmoCardiacoComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
+  },
+  {
     path: 'login',
     component: LoginComponent,
     ...canActivate(() => redirectLoggedInTo(['/home']))
   },
   {
-    path: 'sensores_externos',
+    path: 'Sensores-Externos',
     component: SensorsExternsComponent,
     ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },

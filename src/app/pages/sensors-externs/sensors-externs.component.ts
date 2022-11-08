@@ -101,6 +101,14 @@ export class SensorsExternsComponent implements OnInit {
       typeCal: 1,
       check: false,
     },
+    {
+      id: '12',
+      name: 'Ritmo Cardíaco',
+      key: 'sensor_ritmoCardiaco',
+      isDisable: false,
+      typeCal: 1,
+      check: false,
+    },
   ];
   tempListSensorsRadio1 = deepCopy(this.listSensorsRadio);
   tempListSensorsRadio2 = deepCopy(this.listSensorsRadio);
@@ -187,6 +195,8 @@ export class SensorsExternsComponent implements OnInit {
       if (s.sensor == 'GPS') icon = 'ic_gps'; 
       if (s.sensor == 'Micrófono') icon = 'ic_microfono'; 
       if (s.sensor == 'Termómetro') icon = 'ic_termometro'; 
+      if (s.sensor == 'Ritmo Cardíaco') icon = 'ic_ritmo_cardiaco'; 
+
 
       this.tempListSensorsRadio1 = this.tempListSensorsRadio1.map(radio => 
         radio.name === s.sensor? {...radio, isDisable: true} : radio

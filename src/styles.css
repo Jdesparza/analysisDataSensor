@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-    --color-blue-primary: rgba(77, 119, 179, 1);
-    --color-blue-secondary: rgba(77, 119, 179, .5);
+    --color-blue-primary: #4d77b3;
+    --color-blue-secondary: #4d77b380;
     --color-red-primary: #dc3545;
 }
 body {

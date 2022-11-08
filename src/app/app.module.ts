@@ -29,6 +29,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphSensorsComponent } from './components/graph-sensors/graph-sensors.component';
 import { TermometroComponent } from './pages/sensors/termometro/termometro.component';
+import { RitmoCardiacoComponent } from './pages/sensors/ritmo-cardiaco/ritmo-cardiaco.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { TermometroComponent } from './pages/sensors/termometro/termometro.compo
     FooterComponent,
     GraphSensorsComponent,
     TermometroComponent,
+    RitmoCardiacoComponent,
   ],
   imports: [
     BrowserModule,

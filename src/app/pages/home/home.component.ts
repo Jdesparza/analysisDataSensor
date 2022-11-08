@@ -101,6 +101,15 @@ export class HomeComponent implements OnInit {
       modelSmartphone: '',
       route: 'Sensor/Termometro'
     }
+    ,
+    {
+      id: '12',
+      sensor: 'Ritmo Cardíaco',
+      analisis: null,
+      icon: 'ic_ritmo_cardiaco',
+      modelSmartphone: '',
+      route: 'Sensor/Ritmo-Cardiaco'
+    }
   ];
   tempListSensorsCard: any[] = [];
 
@@ -119,6 +128,7 @@ export class HomeComponent implements OnInit {
   listSenGPS: any;
   listSenMicrofono: any;
   listSenTermometro: any;
+  listSenRitmoCardiaco: any;
 
   constructor(
     private nameSensorService: NameSensorService,
@@ -155,6 +165,8 @@ export class HomeComponent implements OnInit {
       res.sensorPodometro.isExists == true && (res.sensorPodometro.calPasos_10 != undefined || res.sensorPodometro.calPasos_15 != undefined));
     this.listSenTermometro = sensorsSmartphoneD.filter((res: {sensorTermometro: any;}) => 
       res.sensorTermometro.isExists == true && (res.sensorTermometro.temperatura_1 != undefined || res.sensorTermometro.temperatura_2 != undefined));
+    this.listSenRitmoCardiaco = sensorsSmartphoneD.filter((res: {sensorRitmoCardiaco: any;}) => 
+      res.sensorRitmoCardiaco.isExists == true && (res.sensorRitmoCardiaco.calRitmoCardiaco_1 != undefined || res.sensorRitmoCardiaco.calRitmoCardiaco_2 != undefined));
 
     this.listSenCamara = sensorsSmartphoneD.filter((res: {sensorCamara: any;}) => 
       res.sensorCamara.isExists == true && (res.sensorCamara.camTrasera != undefined || res.sensorCamara.camFrontal != undefined));
@@ -219,6 +231,18 @@ export class HomeComponent implements OnInit {
         smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
 
         this.registrarDatosCard('Termómetro', smartMenosFallos);
+      }
+    }
+
+    // Ritmo Cardíaco
+    if (this.listSenRitmoCardiaco.length > 0) {
+      calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Ritmo Cardíaco'});
+      if(calSensorExterno != undefined) {
+        sensorFalloMediaCalculada = this.errorRateModelService.smartphoneMediaEquation(this.listSenRitmoCardiaco, calSensorExterno, 'Ritmo Cardíaco');
+        dataObjects = this.errorRateModelService.mediaModelMarcaDuplicados(sensorFalloMediaCalculada, 'modelo');
+        smartMenosFallos = this.errorRateModelService.smartphoneMenosFallos(dataObjects);
+
+        this.registrarDatosCard('Ritmo Cardíaco', smartMenosFallos);
       }
     }
 

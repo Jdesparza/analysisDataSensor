@@ -22,7 +22,7 @@ hr {
 .sensor-externo-container, .nav-list-item {
     display: flex;
     align-items: center;
-    height: 46px;
+    height: 44px;
 }
 .active, .nav-list-open .nav-list-item:hover {
     background-color: var(--color-blue-primary);

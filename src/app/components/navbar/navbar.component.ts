@@ -78,6 +78,12 @@ export class NavbarComponent implements OnInit {
       name: 'Termómetro',
       icon: 'ic_termometro',
       route: 'Sensor/Termometro'
+    },
+    {
+      number: '12',
+      name: 'Ritmo Cardíaco',
+      icon: 'ic_ritmo_cardiaco',
+      route: 'Sensor/Ritmo-Cardiaco'
     }
   ];
 
