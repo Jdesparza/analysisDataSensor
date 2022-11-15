@@ -121,16 +121,16 @@ export class SensorsExternsComponent implements OnInit {
   mostrarForm: boolean = false;
   isBtnSubmitActive: boolean = true;
   disabledBtnradio: boolean = false;
-  type2_cal1_input1_placeholder: string = '';
-  type2_cal1_input2_placeholder: string = '';
-  type2_cal2_input1_placeholder: string = '';
-  type2_cal2_input2_placeholder: string = '';
+  type2_input1_placeholder: string = '';
+  type2_input2_placeholder: string = '';
   contChangeInputCal2 = 0;
   isRequiredInput: boolean = false;
   optionSensor: any = null;
   isCameraType: string = '';
   typeCal: number = 0;
   isCal2Exist: boolean = false;
+  tooltipMessage1 = '';
+  tooltipMessage2 = '';
 
   // Btn Form
   btnValidFormN: string = 'Agregar';
@@ -217,6 +217,7 @@ export class SensorsExternsComponent implements OnInit {
   }
 
   isOptionRadio(nameS : any, typeCal: number) {
+    this.tooltipMessage1 = this.tooltipMessage2 = '';
     this.isBtnSubmitActive = false;
     if(!this.isEdit) this.formSenExterno.reset();
 
@@ -226,16 +227,41 @@ export class SensorsExternsComponent implements OnInit {
     this.habilitarInputs(typeCal);
 
     if(nameS == 'Barómetro') {
-      this.type2_cal2_input1_placeholder = this.type2_cal1_input1_placeholder = 'Presión'; 
-      this.type2_cal2_input2_placeholder = this.type2_cal1_input2_placeholder = 'Altitud';
+      this.tooltipMessage1 = 'Presión en la Mañana';
+      this.tooltipMessage2 = 'Presión en la Tarde';
+      this.type2_input1_placeholder = 'Presión'; 
+      this.type2_input2_placeholder = 'Altitud';
     } else if(nameS == 'Micrófono')  {
-      this.type2_cal2_input1_placeholder = this.type2_cal1_input1_placeholder = 'Mínimo'; 
-      this.type2_cal2_input2_placeholder = this.type2_cal1_input2_placeholder = 'Máximo';
+      this.tooltipMessage1 = 'Sonido en Cafetería UTPL';
+      this.tooltipMessage2 = 'Sonido en Biblioteca UTPL';
+      this.type2_input1_placeholder = 'Mínimo'; 
+      this.type2_input2_placeholder = 'Máximo';
     } else if(nameS == 'Cámara') {
-      this.type2_cal1_input1_placeholder = 'Ancho (Trasera)'; 
-      this.type2_cal1_input2_placeholder = 'Altura (Trasera)';
-      this.type2_cal2_input1_placeholder = 'Ancho (Frontal)'; 
-      this.type2_cal2_input2_placeholder = 'Altura (Frontal)';
+      this.tooltipMessage1 = 'Cámara Trasera';
+      this.tooltipMessage2 = 'Cámara Frontal';
+      this.type2_input1_placeholder = 'Ancho'; 
+      this.type2_input2_placeholder = 'Altura';
+    } else if(nameS == 'De Proximidad') {
+      this.tooltipMessage1 = 'Proximación Corta';
+      this.tooltipMessage2 = 'Proximación Larga';
+    } else if(nameS == 'De Luz') {
+      this.tooltipMessage1 = 'Iluminación Espacio Interno';
+      this.tooltipMessage2 = 'Iluminación Espacio Externo';
+    } else if(nameS == 'Acelerómetro' || nameS == 'Giroscopio') {
+      this.tooltipMessage1 = 'Dispositivo Vertical';
+      this.tooltipMessage2 = 'Dispositivo Horizontal';
+    } else if(nameS == 'Podómetro') {
+      this.tooltipMessage1 = 'Dar 10 Pasos';
+      this.tooltipMessage2 = 'Dar 15 Pasos';
+    } else if(nameS == 'GPS') {
+      this.tooltipMessage1 = 'Ubicación la Cruz UTPL';
+      this.tooltipMessage2 = 'Ubicación Canchas Deportivas UTPL (Al Fondo) ';
+    } else if(nameS == 'Termómetro') {
+      this.tooltipMessage1 = 'Temperatura en la Mañana';
+      this.tooltipMessage2 = 'Temperatura al Medio Día';
+    } else if(nameS == 'Ritmo Cardíaco') {
+      this.tooltipMessage1 = 'Al Correr';
+      this.tooltipMessage2 = 'Al Caminar';
     }
   }
 
@@ -263,6 +289,7 @@ export class SensorsExternsComponent implements OnInit {
   }
 
   btnCancelForm() {
+    this.tooltipMessage1 = this.tooltipMessage2 = '';
     this.formSenExterno.reset();
     this.isBtnSubmitActive = true;
     if (this.isEdit) this.isEdit = false;
@@ -351,6 +378,7 @@ export class SensorsExternsComponent implements OnInit {
   }
 
   async onSubmit() {
+    this.tooltipMessage1 = this.tooltipMessage2 = '';
     if (!this.isEdit) {
       await this.crudSensorExternoService.addSensorExterno(this.cargarData());
     } else {

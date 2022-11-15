@@ -37,48 +37,56 @@ export class ErrorRateService {
       };
 
       if (nameSensor == 'De Proximidad') {
-        if (sensorList[i].sensorProximidad.proximidad_1 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorProximidad.proximidad_1);
-        else if (sensorList[i].sensorProximidad.proximidad_2 != undefined && sensorExt.cal2 .length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorProximidad.proximidad_2);
+        if (sensorList[i].sensorProximidad.proximidad_1 != undefined) {
+          if (sensorList[i].sensorProximidad.proximidad_1 != sensorExt.cal1[0]) 
+            senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorProximidad.proximidad_1);
+          else senSmartCal1Fallo = 0.0
+        } 
+        if (sensorList[i].sensorProximidad.proximidad_2 != undefined && sensorExt.cal2 .length > 0) {
+          if (sensorList[i].sensorProximidad.proximidad_2 < sensorExt.cal2[0]) 
+            senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorProximidad.proximidad_2);
+          else senSmartCal2Fallo = 0.0
+        }
       } else if(nameSensor == 'De Luz') {
         if (sensorList[i].sensorLuz.iluminacion_1 != undefined) 
           senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorLuz.iluminacion_1);
-        else if (sensorList[i].sensorLuz.iluminacion_2 != undefined && sensorExt.cal2.length > 0) 
+        if (sensorList[i].sensorLuz.iluminacion_2 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorLuz.iluminacion_2);
       } else if(nameSensor == 'Podómetro') {
         if (sensorList[i].sensorPodometro.calPasos_10 != undefined) 
           senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorPodometro.calPasos_10);
-        else if (sensorList[i].sensorPodometro.calPasos_15 != undefined && sensorExt.cal2.length > 0) 
+        if (sensorList[i].sensorPodometro.calPasos_15 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorPodometro.calPasos_15);
       } else if(nameSensor == 'Termómetro') {
         if (sensorList[i].sensorTermometro.temperatura_1 != undefined) 
           senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorTermometro.temperatura_1);
-        else if (sensorList[i].sensorTermometro.temperatura_2 != undefined && sensorExt.cal2.length > 0) 
+        if (sensorList[i].sensorTermometro.temperatura_2 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorTermometro.temperatura_2);
       } else if(nameSensor == 'Ritmo Cardíaco') {
         if (sensorList[i].sensorRitmoCardiaco.calRitmoCardiaco_1 != undefined) 
           senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorRitmoCardiaco.calRitmoCardiaco_1);
-        else if (sensorList[i].sensorRitmoCardiaco.calRitmoCardiaco_2 != undefined && sensorExt.cal2.length > 0) 
+        if (sensorList[i].sensorRitmoCardiaco.calRitmoCardiaco_2 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorRitmoCardiaco.calRitmoCardiaco_2);
       } else if(nameSensor == 'Cámara') {
         if (sensorList[i].sensorCamara.camTrasera != undefined) {
           camMP = (sensorExt.cal1[0] * sensorExt.cal1[1]) / 1000000.0;
-          senSmartCal1Fallo = this.equationPorcentajeError(camMP, sensorList[i].sensorCamara.camTrasera.resolucion);
+          if (sensorList[i].sensorCamara.camTrasera.resolucion < camMP) senSmartCal1Fallo = this.equationPorcentajeError(camMP, sensorList[i].sensorCamara.camTrasera.resolucion);
+          else senSmartCal1Fallo = 0.0;
         }
-        else if (sensorList[i].sensorCamara.camFrontal != undefined && sensorExt.cal2.length > 0) {
+        if (sensorList[i].sensorCamara.camFrontal != undefined && sensorExt.cal2.length > 0) {
           camMP = (sensorExt.cal2[0] * sensorExt.cal2[1]) / 1000000.0;
-          senSmartCal2Fallo = this.equationPorcentajeError(camMP, sensorList[i].sensorCamara.camFrontal.resolucion);
+          if (sensorList[i].sensorCamara.camFrontal.resolucion < camMP) senSmartCal2Fallo = this.equationPorcentajeError(camMP, sensorList[i].sensorCamara.camFrontal.resolucion);
+          else senSmartCal2Fallo = 0.0;
         }
       } else if(nameSensor == 'Barómetro') {
         if (sensorList[i].sensorBarometro.presion_1 != undefined) 
           senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[0], sensorList[i].sensorBarometro.presion_1.presion);
-        else if (sensorList[i].sensorBarometro.presion_2 != undefined && sensorExt.cal2.length > 0) 
+        if (sensorList[i].sensorBarometro.presion_2 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorBarometro.presion_2.presion);
       } else if(nameSensor == 'Micrófono') {
         if (sensorList[i].sensorMicrofono.calSonido_1 != undefined) 
           senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[1], sensorList[i].sensorMicrofono.calSonido_1.max);
-        else if (sensorList[i].sensorMicrofono.calSonido_2 != undefined && sensorExt.cal2.length > 0) 
+        if (sensorList[i].sensorMicrofono.calSonido_2 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[1], sensorList[i].sensorMicrofono.calSonido_2.max);
       } else if(nameSensor == 'Acelerómetro') {
         if (sensorList[i].sensorAcelerometro.aceleracion_1 != undefined) {
@@ -86,7 +94,7 @@ export class ErrorRateService {
           mediaSmart_Cal = (sensorList[i].sensorAcelerometro.aceleracion_1.x + sensorList[i].sensorAcelerometro.aceleracion_1.y + sensorList[i].sensorAcelerometro.aceleracion_1.z) / 3;
           senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
         }
-        else if (sensorList[i].sensorAcelerometro.aceleracion_2 != undefined && sensorExt.cal2.length > 0) {
+        if (sensorList[i].sensorAcelerometro.aceleracion_2 != undefined && sensorExt.cal2.length > 0) {
           mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1] + sensorExt.cal2[2]) / 3;
           mediaSmart_Cal = (sensorList[i].sensorAcelerometro.aceleracion_2.x + sensorList[i].sensorAcelerometro.aceleracion_2.y + sensorList[i].sensorAcelerometro.aceleracion_2.z) / 3;
           senSmartCal2Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
@@ -97,7 +105,7 @@ export class ErrorRateService {
           mediaSmart_Cal = (sensorList[i].sensorGiroscopio.rotacion_1.x + sensorList[i].sensorGiroscopio.rotacion_1.y + sensorList[i].sensorGiroscopio.rotacion_1.z) / 3;
           senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
         }
-        else if (sensorList[i].sensorGiroscopio.rotacion_2 != undefined && sensorExt.cal2.length > 0) {
+        if (sensorList[i].sensorGiroscopio.rotacion_2 != undefined && sensorExt.cal2.length > 0) {
           mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1] + sensorExt.cal2[2]) / 3;
           mediaSmart_Cal = (sensorList[i].sensorGiroscopio.rotacion_2.x + sensorList[i].sensorGiroscopio.rotacion_2.y + sensorList[i].sensorGiroscopio.rotacion_2.z) / 3;
           senSmartCal2Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
@@ -108,7 +116,7 @@ export class ErrorRateService {
           mediaSmart_Cal = (sensorList[i].sensorMagnetometro.magnetismo_1.x + sensorList[i].sensorMagnetometro.magnetismo_1.y + sensorList[i].sensorMagnetometro.magnetismo_1.z) / 3;
           senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
         }
-        else if (sensorList[i].sensorMagnetometro.magnetismo_2 != undefined && sensorExt.cal2.length > 0) {
+        if (sensorList[i].sensorMagnetometro.magnetismo_2 != undefined && sensorExt.cal2.length > 0) {
           mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1] + sensorExt.cal2[2]) / 3;
           mediaSmart_Cal = (sensorList[i].sensorMagnetometro.magnetismo_2.x + sensorList[i].sensorMagnetometro.magnetismo_2.y + sensorList[i].sensorMagnetometro.magnetismo_2.z) / 3;
           senSmartCal2Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
@@ -119,7 +127,7 @@ export class ErrorRateService {
           mediaSmart_Cal = (sensorList[i].sensorGPS.ubicacion_1.latitud + sensorList[i].sensorGPS.ubicacion_1.longitud) / 2;
           senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
         }
-        else if (sensorList[i].sensorGPS.ubicacion_2 != undefined && sensorExt.cal2.length > 0) {
+        if (sensorList[i].sensorGPS.ubicacion_2 != undefined && sensorExt.cal2.length > 0) {
           mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1]) / 2;
           mediaSmart_Cal = (sensorList[i].sensorGPS.ubicacion_2.latitud + sensorList[i].sensorGPS.ubicacion_2.longitud) / 2;
           senSmartCal2Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);

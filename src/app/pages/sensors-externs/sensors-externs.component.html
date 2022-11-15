@@ -32,11 +32,11 @@
                         this.optionSensor != 'GPS' &&
                         this.optionSensor != 'Cámara'">
                         <div class="input-group flex-nowrap">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage1}}" matTooltipPosition="left"></i>
                             <input class="form-control" type="number" name="calculation_1" placeholder="Cálculo 1" formControlName="cal1_value1">
                         </div>
                         <div class="input-group flex-nowrap">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage2}}" matTooltipPosition="left"></i>
                             <input class="form-control" type="number" name="calculation_2" placeholder="Cálculo 2" formControlName="cal2_value1">
                         </div>
                     </div>
@@ -45,16 +45,16 @@
                         this.optionSensor == 'Micrófono' || 
                         this.optionSensor == 'Cámara'">
                         <div class="input-group">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage1}}" matTooltipPosition="left"></i>
                             <span class="input-group-text">Calculo 1</span>
-                            <input type="number" aria-label="caltype2_1_1" class="form-control" placeholder="{{type2_cal1_input1_placeholder}}" formControlName="cal1_value1">
-                            <input type="number" aria-label="caltype2_1_2" class="form-control" placeholder="{{type2_cal1_input2_placeholder}}" formControlName="cal1_value2">
+                            <input type="number" aria-label="caltype2_1_1" class="form-control" placeholder="{{type2_input1_placeholder}}" formControlName="cal1_value1">
+                            <input type="number" aria-label="caltype2_1_2" class="form-control" placeholder="{{type2_input2_placeholder}}" formControlName="cal1_value2">
                         </div>
                         <div class="input-group">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage2}}" matTooltipPosition="left"></i>
                             <span class="input-group-text">Calculo 2</span>
-                            <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="caltype2_2_1" class="form-control" placeholder="{{type2_cal2_input1_placeholder}}" formControlName="cal2_value1">
-                            <input type="number" [required]="isRequiredInput" aria-label="caltype2_2_2" class="form-control" placeholder="{{type2_cal2_input2_placeholder}}" formControlName="cal2_value2">
+                            <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="caltype2_2_1" class="form-control" placeholder="{{type2_input1_placeholder}}" formControlName="cal2_value1">
+                            <input type="number" [required]="isRequiredInput" aria-label="caltype2_2_2" class="form-control" placeholder="{{type2_input2_placeholder}}" formControlName="cal2_value2">
                         </div>
                     </div>
                     <div class="type-calculo-3" 
@@ -62,14 +62,14 @@
                         this.optionSensor == 'Giroscopio' || 
                         this.optionSensor == 'Magnetómetro'">
                         <div class="input-group">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage1}}" matTooltipPosition="left"></i>
                             <span class="input-group-text">Ejes Calculo 1</span>
                             <input type="number" aria-label="eje_x_1" class="form-control" placeholder="X" formControlName="cal1_value1">
                             <input type="number" aria-label="eje_y_1" class="form-control" placeholder="Y" formControlName="cal1_value2">
                             <input type="number" aria-label="eje_z_1" class="form-control" placeholder="Z" formControlName="cal1_value3">
                         </div>
                         <div class="input-group">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage2}}" matTooltipPosition="left"></i>
                             <span class="input-group-text">Ejes Calculo 2</span>
                             <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="eje_x_2" class="form-control" placeholder="X" formControlName="cal2_value1">
                             <input type="number" [required]="isRequiredInput"  aria-label="eje_y_2" class="form-control" placeholder="Y" formControlName="cal2_value2">
@@ -78,7 +78,7 @@
                     </div>
                     <div class="type-calculo-4" *ngIf="this.optionSensor == 'GPS'">
                         <div class="input-group">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage1}}" matTooltipPosition="left"></i>
                             <span class="input-group-text">Calculo 1</span>
                             <input type="number" aria-label="latitud_1" class="form-control" placeholder="Latitud" formControlName="cal1_value1">
                             <input type="number" aria-label="longitud_1" class="form-control" placeholder="Longitud" formControlName="cal1_value2">
@@ -87,7 +87,7 @@
                             <input type="number" aria-label="velocidad_1" class="form-control" placeholder="Velocidad" formControlName="cal1_value5">
                         </div>
                         <div class="input-group">
-                            <i class="fa-solid fa-calculator input-group-text"></i>
+                            <i class="fa-solid fa-calculator input-group-text" matTooltip="{{tooltipMessage2}}" matTooltipPosition="left"></i>
                             <span class="input-group-text">Calculo 2</span>
                             <input type="number" (ngModelChange)='isChangeCal2($event)' aria-label="latitud_2" class="form-control" placeholder="Latitud" formControlName="cal2_value1">
                             <input type="number" [required]="isRequiredInput" aria-label="longitud_2" class="form-control" placeholder="Longitud" formControlName="cal2_value2">
