@@ -28,23 +28,23 @@ export class GraphSensorsComponent implements OnInit {
   checkRadioFilter = [
     {
       id: '1',
-      value: 10,
+      value: 5,
       check: true,
     },
     {
       id: '2',
-      value: 15,
+      value: 10,
       check: false,
     },
     {
       id: '3',
-      value: 20,
+      value: 15,
       check: false,
     },
   ];
   filterControlForm: FormGroup;
   marcaModeloForm = 'modelo';
-  cantDatosMostrarForm = 10;
+  cantDatosMostrarForm = 5;
   
   graficData: any;
   labelsGrafic: string[] = [];
@@ -122,7 +122,7 @@ export class GraphSensorsComponent implements OnInit {
         else if (this.marcaModeloForm == 'marca') this.labelsGrafic[i] = smartMenosFallos[i].marca.toUpperCase();
         this.dataErrorGrafic[i] = smartMenosFallos[i].fallo;
         this.dataExactitudGrafic[i] = (100 - smartMenosFallos[i].fallo);
-        if (smartMenosFallos.length > 5 && (i + 1) <= this.cantDatosMostrarForm) break;
+        if (smartMenosFallos.length >= this.cantDatosMostrarForm && (i + 1) == this.cantDatosMostrarForm) break;
       }
 
       this.barChartData = {
