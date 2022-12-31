@@ -31,7 +31,7 @@ export class ErrorRateService {
       senSmartCal2Fallo = null;
       media = null;
       if(nameSensor == 'Cámara') camMP = null;
-      else if(nameSensor == 'Acelerómetro' || nameSensor == 'Giroscopio' || nameSensor == 'Magnetómetro') {
+      else if(nameSensor == 'Acelerómetro' || nameSensor == 'Giroscopio' || nameSensor == 'Magnetómetro' || nameSensor == 'Micrófono') {
         mediaSE_Cal = null; 
         mediaSmart_Cal = null 
       };
@@ -84,10 +84,16 @@ export class ErrorRateService {
         if (sensorList[i].sensorBarometro.presion_2 != undefined && sensorExt.cal2.length > 0) 
           senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[0], sensorList[i].sensorBarometro.presion_2.presion);
       } else if(nameSensor == 'Micrófono') {
-        if (sensorList[i].sensorMicrofono.calSonido_1 != undefined) 
-          senSmartCal1Fallo = this.equationPorcentajeError(sensorExt.cal1[1], sensorList[i].sensorMicrofono.calSonido_1.max);
-        if (sensorList[i].sensorMicrofono.calSonido_2 != undefined && sensorExt.cal2.length > 0) 
-          senSmartCal2Fallo = this.equationPorcentajeError(sensorExt.cal2[1], sensorList[i].sensorMicrofono.calSonido_2.max);
+        if (sensorList[i].sensorMicrofono.calSonido_1 != undefined) {
+          mediaSE_Cal = (sensorExt.cal1[0] + sensorExt.cal1[1]) / 2;
+          mediaSmart_Cal = (sensorList[i].sensorMicrofono.calSonido_1.min + sensorList[i].sensorMicrofono.calSonido_1.max) / 2;
+          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
+        }
+        if (sensorList[i].sensorMicrofono.calSonido_2 != undefined && sensorExt.cal2.length > 0) {
+          mediaSE_Cal = (sensorExt.cal2[0] + sensorExt.cal2[1]) / 2;
+          mediaSmart_Cal = (sensorList[i].sensorMicrofono.calSonido_2.min + sensorList[i].sensorMicrofono.calSonido_2.max) / 2;
+          senSmartCal1Fallo = this.equationPorcentajeError(mediaSE_Cal, mediaSmart_Cal);
+        }
       } else if(nameSensor == 'Acelerómetro') {
         if (sensorList[i].sensorAcelerometro.aceleracion_1 != undefined) {
           mediaSE_Cal = (sensorExt.cal1[0] + sensorExt.cal1[1] + sensorExt.cal1[2]) / 3;

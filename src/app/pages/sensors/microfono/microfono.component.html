@@ -39,11 +39,11 @@
             </td>
             <td *ngIf="calSensorExterno == undefined || (dato.sensorMicrofono.calSonido_1 == undefined && dato.sensorMicrofono.calSonido_2 == undefined)">N/A</td>
 
-            <td *ngIf="dato.sensorMicrofono.fabricante != undefined">{{ dato.sensorMicrofono.fabricante }}</td>
-            <td *ngIf="dato.sensorMicrofono.fabricante == undefined">N/A</td>
+            <td *ngIf="dato.sensorMicrofono.formato != undefined">{{ dato.sensorMicrofono.formato }}</td>
+            <td *ngIf="dato.sensorMicrofono.formato == undefined">N/A</td>
 
-            <td *ngIf="dato.sensorMicrofono.version != undefined">{{ dato.sensorMicrofono.version }}</td>
-            <td *ngIf="dato.sensorMicrofono.version == undefined">N/A</td>
+            <td *ngIf="dato.sensorMicrofono.frecuencia != undefined">{{ dato.sensorMicrofono.frecuencia }}</td>
+            <td *ngIf="dato.sensorMicrofono.frecuencia == undefined">N/A</td>
 
             <td *ngIf="dato.sensorMicrofono.calSonido_1 != undefined">
                 <span matTooltip="{{ dato.sensorMicrofono.calSonido_1.min }}">{{ dato.sensorMicrofono.calSonido_1.min | number: '.0-2' }}</span>

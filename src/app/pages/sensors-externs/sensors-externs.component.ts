@@ -326,7 +326,7 @@ export class SensorsExternsComponent implements OnInit {
   }
 
   isUpdate(sensorExterno: SensorExterno) {
-    console.log(sensorExterno.cal2[0])
+    //console.log(sensorExterno.cal2[0])
     if(sensorExterno.cal2[0] != undefined) this.isCal2Exist = true;
     else if(sensorExterno.cal2[0] == undefined) this.isCal2Exist = false;
     this.habilitarInputs(0);
