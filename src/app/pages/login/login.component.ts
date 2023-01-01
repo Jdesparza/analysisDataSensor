@@ -12,12 +12,15 @@ export class LoginComponent implements OnInit {
 
   public formLogin: FormGroup;
   loginInvalid: boolean = false;
+  servicio;
 
   constructor(
     private formBuilder: FormBuilder, 
     private authService: AuthService,
     private router: Router
     ) {
+      this.servicio = authService;
+
     this.formLogin = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -27,10 +30,9 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    this.authService.login(this.formLogin.value)
+    this.servicio.login(this.formLogin.value)
     .then(response => {
       this.router.navigate(['/home']);
-      //console.log(response);
     })
     .catch(error => {console.log(error); this.loginInvalid = true});
   }

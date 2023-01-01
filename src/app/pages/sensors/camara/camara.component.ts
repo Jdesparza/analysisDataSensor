@@ -39,7 +39,7 @@ export class CamaraComponent implements OnInit {
 
   data() {
     this.crudSensorExternoService.getSensorExterno().subscribe(sensorsExterns => {
-      this.calSensorExterno  = sensorsExterns.find((senExt: { sensor: string; }) => {return senExt.sensor === this.infoSensorSmartphone[1]});;
+      this.calSensorExterno  = sensorsExterns.find((senExt: { sensor: string; }) => {return senExt.sensor === this.infoSensorSmartphone[1]});
       //console.log(this.calSensorExterno);
     });
     //this.calSensorExterno = this.listSensoresExternos.find(senExt => {return senExt.sensor === 'Acelerómetro'});

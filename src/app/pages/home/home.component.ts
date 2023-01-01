@@ -141,7 +141,6 @@ export class HomeComponent implements OnInit {
     this.nameSensorService.nombreSensor = "Home";
     this.crudSensorExternoService.getSensorExterno().subscribe(sensorsExterns => {
       this.listSensoresExternos = sensorsExterns;
-      //console.log(this.listSensoresExternos);
     });
     this.sensoresSmartphoneService.getSensorSmartphone().subscribe(sensorsSmartphoneD => {
       this.tempListSensorsCard = deepCopy(this.listSensors);

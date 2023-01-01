@@ -1,0 +1,653 @@
+[
+    {
+        "sensorTermometro": {
+            "isExists": true,
+            "temperatura_1": 19
+        },
+        "modelo": "SM-G935F",
+        "fabricante": "samsung",
+        "sensorPodometro": {
+            "nombre": "SAMSUNG Step Counter Sensor",
+            "version": 1,
+            "potencia": 0.30000001192092896,
+            "fabricante": "Samsung Inc.",
+            "isExists": true,
+            "resolucion": 1,
+            "calPasos_10": 7,
+            "rangoMax": 4294967296
+        },
+        "sensorGPS": {
+            "ubicacion_1": {
+                "latitud": -3.986704310582563,
+                "altitud": 2166.0777036965765,
+                "velocidad": 0.0384494923055172,
+                "precision": 24,
+                "longitud": -79.19955807300964
+            },
+            "proveedor": "gps",
+            "ubicacion_2": {
+                "precision": 32,
+                "longitud": -79.19929066154221,
+                "altitud": 2108.65718500648,
+                "latitud": -3.984396245318112,
+                "velocidad": 0.12995688617229462
+            },
+            "isExists": true
+        },
+        "sensorBarometro": {
+            "resolucion": 0.000244140625,
+            "rangoMax": 1260,
+            "nombre": "LPS25H Barometer Sensor",
+            "presion_2": {
+                "presion": 781.3154296875,
+                "altitud": 2139.438720703125
+            },
+            "potencia": 1,
+            "presion_1": {
+                "altitud": 2101.51416015625,
+                "presion": 785.01318359375
+            },
+            "version": 1,
+            "fabricante": "STMicroelectronics",
+            "isExists": true
+        },
+        "sensorMicrofono": {
+            "calSonido_2": {
+                "max": 39.83947280871269,
+                "min": 24.830275772702667,
+                "canal": "mono"
+            },
+            "isExists": true,
+            "frecuencia": 8000,
+            "calSonido_1": {
+                "canal": "mono",
+                "min": 35.134639856220595,
+                "max": 60.45563044748835
+            },
+            "formato": "16BIT PCM"
+        },
+        "sensorLuz": {
+            "resolucion": 1,
+            "potencia": 0.75,
+            "iluminacion_2": 2602,
+            "isExists": true,
+            "version": 1,
+            "nombre": "TMD49XX lux Sensor",
+            "rangoMax": 60000,
+            "fabricante": "AMS, Inc.",
+            "iluminacion_1": 13
+        },
+        "sensorMagnetometro": {
+            "magnetismo_2": {
+                "x": -119.0999984741211,
+                "z": 31.100000381469727,
+                "y": -0.10000000149011612
+            },
+            "version": 1,
+            "rangoMax": 1200,
+            "magnetismo_1": {
+                "x": -129.10000610351562,
+                "z": -10.699999809265137,
+                "y": -22.30000114440918
+            },
+            "fabricante": "Yamaha Corporation",
+            "nombre": "YAS537 Magnetic Sensor",
+            "potencia": 6,
+            "isExists": true,
+            "resolucion": 0.10000000149011612
+        },
+        "sensorRitmoCardiaco": {
+            "calRitmoCardiaco_1": 115.97430419921875,
+            "resolucion": 1,
+            "rangoMax": 200,
+            "nombre": "HeartRate Sensor",
+            "fabricante": "Samsung Electronics",
+            "potencia": 0,
+            "version": 1,
+            "isExists": true
+        },
+        "sensorGiroscopio": {
+            "rotacion_1": {
+                "y": 0.0038857138715684414,
+                "x": -0.0006530149839818478,
+                "z": 0.0009560040780343115
+            },
+            "fabricante": "STM",
+            "potencia": 6.099999904632568,
+            "version": 2,
+            "rangoMax": 17.453292846679688,
+            "isExists": true,
+            "resolucion": 0.0006108652451075613,
+            "nombre": "K6DS3TR Gyroscope Sensor",
+            "rotacion_2": {
+                "y": 0.0006743951817043126,
+                "x": -0.0016884314827620983,
+                "z": -0.001497230725362897
+            }
+        },
+        "sensorAcelerometro": {
+            "fabricante": "STM",
+            "version": 1,
+            "nombre": "K6DS3TR Acceleration Sensor",
+            "rangoMax": 78.45320129394531,
+            "resolucion": 0.002394201699644327,
+            "aceleracion_1": {
+                "y": 9.572310447692871,
+                "x": -0.1245022863149643,
+                "z": 0.1771763414144516
+            },
+            "potencia": 0.25,
+            "isExists": true,
+            "aceleracion_2": {
+                "z": 9.627379417419434,
+                "x": -0.4980091452598572,
+                "y": -0.15562786161899567
+            }
+        },
+        "sensorProximidad": {
+            "potencia": 0.75,
+            "fabricante": "AMS, Inc.",
+            "proximidad_1": 0,
+            "resolucion": 8,
+            "nombre": "TMD49XX Proximity Sensor",
+            "rangoMax": 8,
+            "version": 1,
+            "isExists": true,
+            "proximidad_2": 8
+        },
+        "id": "SM-G935F-f9e22348c62d413d-ad0c16020583e6aac6",
+        "sensorCamara": {
+            "camTrasera": {
+                "resolucion": 12.192768096923828,
+                "ancho": 4032,
+                "altura": 3024
+            },
+            "camFrontal": {
+                "ancho": 2592,
+                "resolucion": 5.038847923278809,
+                "altura": 1944
+            },
+            "isExists": true
+        }
+    },
+    {
+        "sensorRitmoCardiaco": {
+            "isExists": false
+        },
+        "sensorProximidad": {
+            "resolucion": 5,
+            "nombre": "proximity-apds9922",
+            "fabricante": "avago",
+            "potencia": 0.75,
+            "isExists": true,
+            "proximidad_2": 5,
+            "rangoMax": 5,
+            "version": 1
+        },
+        "sensorLuz": {
+            "rangoMax": 10000,
+            "iluminacion_1": 40,
+            "resolucion": 1,
+            "nombre": "light-apds9922",
+            "isExists": true
+        },
+        "sensorAcelerometro": {
+            "isExists": true
+        },
+        "sensorTermometro": {
+            "isExists": false
+        },
+        "modelo": "RNE-L23",
+        "sensorCamara": {
+            "camTrasera": {
+                "ancho": 4608,
+                "resolucion": 15.925248146057129,
+                "altura": 3456
+            },
+            "isExists": true
+        },
+        "fabricante": "HUAWEI",
+        "sensorGiroscopio": {
+            "isExists": false
+        },
+        "sensorMicrofono": {
+            "formato": "16BIT PCM",
+            "calSonido_1": {
+                "min": 8.490545330504071,
+                "max": 61.21365325212356,
+                "canal": "mono"
+            },
+            "isExists": true,
+            "frecuencia": 8000
+        },
+        "sensorBarometro": {
+            "isExists": false
+        },
+        "sensorMagnetometro": {
+            "resolucion": 0.0625,
+            "magnetismo_1": {
+                "x": 85.8125,
+                "z": -3.3125,
+                "y": -37.6875
+            },
+            "rangoMax": 2000,
+            "version": 1,
+            "fabricante": "akm",
+            "potencia": 6.800000190734863,
+            "nombre": "mag-akm09918",
+            "isExists": true
+        },
+        "id": "RNE-L23-f462f328fdedd51b-M4V5T18330002678",
+        "sensorGPS": {
+            "ubicacion_1": {
+                "latitud": -3.987433443894792,
+                "longitud": -79.19858749410224,
+                "altitud": 2131.4294884325936,
+                "precision": 19,
+                "velocidad": 0.6456902623176575
+            },
+            "isExists": true,
+            "proveedor": "gps"
+        },
+        "sensorPodometro": {
+            "isExists": true
+        }
+    },
+    {
+        "sensorMicrofono": {
+            "isExists": true
+        },
+        "modelo": "Redmi Note 9S",
+        "sensorPodometro": {
+            "isExists": true
+        },
+        "sensorRitmoCardiaco": {
+            "isExists": false
+        },
+        "sensorProximidad": {
+            "rangoMax": 5,
+            "proximidad_2": 5,
+            "resolucion": 0.10000000149011612,
+            "fabricante": "sensortek",
+            "potencia": 0.10000000149011612,
+            "isExists": true,
+            "proximidad_1": 0,
+            "nombre": "stk_stk3x3x Proximity Sensor Wakeup",
+            "version": 240
+        },
+        "sensorTermometro": {
+            "isExists": true
+        },
+        "sensorBarometro": {
+            "isExists": false
+        },
+        "fabricante": "Xiaomi",
+        "sensorGiroscopio": {
+            "isExists": true
+        },
+        "sensorLuz": {
+            "iluminacion_1": 100.57500457763672,
+            "isExists": true,
+            "nombre": "stk_stk3x3x Ambient Light Sensor Non-wakeup",
+            "rangoMax": 4095.900146484375,
+            "fabricante": "sensortek",
+            "resolucion": 0.5400000214576721,
+            "version": 240,
+            "potencia": 0.09000000357627869
+        },
+        "sensorMagnetometro": {
+            "isExists": true
+        },
+        "sensorGPS": {
+            "ubicacion_1": {
+                "altitud": 2187.842529296875,
+                "longitud": -79.19946032,
+                "velocidad": 0,
+                "latitud": -3.98685655,
+                "precision": 14.35136890411377
+            },
+            "proveedor": "gps",
+            "isExists": true
+        },
+        "sensorAcelerometro": {
+            "isExists": true
+        },
+        "sensorCamara": {
+            "camFrontal": {
+                "resolucion": 3.9813120365142822,
+                "ancho": 2304,
+                "altura": 1728
+            },
+            "camTrasera": {
+                "resolucion": 12,
+                "altura": 3000,
+                "ancho": 4000
+            },
+            "isExists": true
+        },
+        "id": "Redmi Note 9S-a799e5422798f339-unknown"
+    },
+    {
+        "sensorGiroscopio": {
+            "isExists": true
+        },
+        "modelo": "SM-G935F",
+        "sensorBarometro": {
+            "potencia": 1,
+            "nombre": "LPS25H Barometer Sensor",
+            "resolucion": 0.000244140625,
+            "version": 1,
+            "presion_1": {
+                "altitud": 2101.51416015625,
+                "presion": 785.01318359375
+            },
+            "fabricante": "STMicroelectronics",
+            "isExists": true,
+            "rangoMax": 1260,
+            "presion_2": {
+                "altitud": 2139.438720703125,
+                "presion": 781.3154296875
+            }
+        },
+        "fabricante": "samsung",
+        "sensorMagnetometro": {
+            "resolucion": 0.10000000149011612,
+            "nombre": "YAS537 Magnetic Sensor",
+            "isExists": true,
+            "rangoMax": 1200,
+            "version": 1,
+            "fabricante": "Yamaha Corporation",
+            "potencia": 6
+        },
+        "sensorProximidad": {
+            "nombre": "TMD49XX Proximity Sensor",
+            "potencia": 0.75,
+            "resolucion": 8,
+            "proximidad_2": 8,
+            "version": 1,
+            "isExists": true,
+            "fabricante": "AMS, Inc.",
+            "proximidad_1": 0,
+            "rangoMax": 8
+        },
+        "sensorPodometro": {
+            "calPasos_10": 7,
+            "fabricante": "Samsung Inc.",
+            "resolucion": 1,
+            "potencia": 0.30000001192092896,
+            "nombre": "SAMSUNG Step Counter Sensor",
+            "rangoMax": 4294967296,
+            "isExists": true,
+            "version": 1
+        },
+        "sensorMicrofono": {
+            "calSonido_2": {
+                "canal": "mono",
+                "max": 39.83947280871269,
+                "min": 24.830275772702667
+            },
+            "formato": "16BIT PCM",
+            "frecuencia": 8000,
+            "isExists": true,
+            "calSonido_1": {
+                "min": 35.134639856220595,
+                "canal": "mono",
+                "max": 60.45563044748835
+            }
+        },
+        "sensorLuz": {
+            "potencia": 0.75,
+            "isExists": true,
+            "fabricante": "AMS, Inc.",
+            "rangoMax": 60000,
+            "version": 1,
+            "nombre": "TMD49XX lux Sensor",
+            "resolucion": 1
+        },
+        "sensorCamara": {
+            "camTrasera": {
+                "resolucion": 12.192768096923828,
+                "ancho": 4032,
+                "altura": 3024
+            },
+            "camFrontal": {
+                "altura": 1944,
+                "ancho": 2592,
+                "resolucion": 5.038847923278809
+            },
+            "isExists": true
+        },
+        "sensorTermometro": {
+            "isExists": false
+        },
+        "sensorAcelerometro": {
+            "isExists": true,
+            "nombre": "K6DS3TR Acceleration Sensor",
+            "resolucion": 0.002394201699644327,
+            "aceleracion_2": {
+                "z": 9.61061954498291,
+                "x": -0.33998700976371765,
+                "y": -0.2370332032442093
+            },
+            "version": 1,
+            "fabricante": "STM",
+            "rangoMax": 78.45320129394531,
+            "potencia": 0.25
+        },
+        "sensorRitmoCardiaco": {
+            "calRitmoCardiaco_1": 115.97430419921875,
+            "potencia": 0,
+            "fabricante": "Samsung Electronics",
+            "resolucion": 1,
+            "nombre": "HeartRate Sensor",
+            "isExists": true,
+            "version": 1,
+            "rangoMax": 200
+        },
+        "id": "SM-G935F-f9e22348c62d413d-ad0c16020583e6aac6",
+        "sensorGPS": {
+            "proveedor": "gps",
+            "ubicacion_1": {
+                "altitud": 2166.0777036965765,
+                "latitud": -3.986704310582563,
+                "velocidad": 0.0384494923055172,
+                "longitud": -79.19955807300964,
+                "precision": 24
+            },
+            "ubicacion_2": {
+                "velocidad": 0.12995688617229462,
+                "altitud": 2108.65718500648,
+                "latitud": -3.984396245318112,
+                "precision": 32,
+                "longitud": -79.19929066154221
+            },
+            "isExists": true
+        }
+    },
+    {
+        "sensorRitmoCardiaco": {
+            "isExists": false
+        },
+        "id": "TECNO LD7-af86c68e32aea970-unknown",
+        "sensorBarometro": {
+            "isExists": false
+        },
+        "sensorPodometro": {
+            "nombre": "STEP_COUNTER",
+            "calPasos_10": 0,
+            "fabricante": "MTK",
+            "potencia": 0.0010000000474974513,
+            "resolucion": 1,
+            "rangoMax": 2147483648,
+            "version": 1,
+            "isExists": true
+        },
+        "sensorCamara": {
+            "isExists": true
+        },
+        "sensorMagnetometro": {
+            "isExists": true
+        },
+        "sensorMicrofono": {
+            "formato": "16BIT PCM",
+            "calSonido_2": {
+                "max": 38.30179420396986,
+                "min": 10.129689688232471,
+                "canal": "mono"
+            },
+            "isExists": true,
+            "frecuencia": 8000,
+            "calSonido_1": {
+                "canal": "mono",
+                "min": 31.431397591045915,
+                "max": 49.18578030733539
+            }
+        },
+        "fabricante": "TECNO MOBILE LIMITED",
+        "modelo": "TECNO LD7",
+        "sensorGiroscopio": {
+            "isExists": true
+        },
+        "sensorProximidad": {
+            "resolucion": 1,
+            "potencia": 0.0010000000474974513,
+            "fabricante": "MTK",
+            "version": 1,
+            "rangoMax": 1,
+            "proximidad_1": 0,
+            "isExists": true,
+            "nombre": "PROXIMITY"
+        },
+        "sensorAcelerometro": {
+            "potencia": 0.0010000000474974513,
+            "aceleracion_1": {
+                "z": 9.321999549865723,
+                "y": 2.98799991607666,
+                "x": 0.42100000381469727
+            },
+            "resolucion": 0.0012000000569969416,
+            "rangoMax": 78.45320129394531,
+            "fabricante": "MTK",
+            "version": 1,
+            "nombre": "ACCELEROMETER",
+            "isExists": true
+        },
+        "sensorLuz": {
+            "potencia": 0.0010000000474974513,
+            "resolucion": 1,
+            "rangoMax": 65535,
+            "fabricante": "MTK",
+            "nombre": "LIGHT",
+            "isExists": true,
+            "iluminacion_1": 130,
+            "version": 1
+        },
+        "sensorGPS": {
+            "ubicacion_1": {
+                "precision": 4,
+                "latitud": -3.9869566666666665,
+                "longitud": -79.19939333333333,
+                "velocidad": 0.11169472336769104,
+                "altitud": 2120.6
+            },
+            "isExists": true,
+            "ubicacion_2": {
+                "precision": 7.099999904632568,
+                "velocidad": 0.8142905831336975,
+                "latitud": -3.9843133333333336,
+                "altitud": 2183.1,
+                "longitud": -79.19937166666666
+            },
+            "proveedor": "gps"
+        },
+        "sensorTermometro": {
+            "isExists": false
+        }
+    },
+    {
+        "sensorGiroscopio": {
+            "isExists": true
+        },
+        "sensorRitmoCardiaco": {
+            "isExists": false
+        },
+        "sensorLuz": {
+            "isExists": true
+        },
+        "sensorAcelerometro": {
+            "isExists": true
+        },
+        "sensorGPS": {
+            "ubicacion_1": {
+                "altitud": 2142.669921875,
+                "latitud": -3.98678378,
+                "precision": 10.720000267028809,
+                "longitud": -79.19942929,
+                "velocidad": 0
+            },
+            "proveedor": "gps",
+            "ubicacion_2": {
+                "longitud": -79.19917855,
+                "latitud": -3.9845426,
+                "altitud": 2125.56982421875,
+                "velocidad": 0,
+                "precision": 27.87200164794922
+            },
+            "isExists": true
+        },
+        "sensorProximidad": {
+            "rangoMax": 5,
+            "resolucion": 0.001007080078125,
+            "fabricante": "Eminent",
+            "proximidad_2": 5,
+            "proximidad_1": 0,
+            "potencia": 0.3199999928474426,
+            "isExists": true,
+            "nombre": "EPL259x ALS/PS PROX",
+            "version": 2
+        },
+        "id": "moto g(6) play-8a5ae2128e345ff2-unknown",
+        "sensorMicrofono": {
+            "calSonido_2": {
+                "max": 31.10354508984266,
+                "canal": "mono",
+                "min": 20.355172887305365
+            },
+            "frecuencia": 8000,
+            "calSonido_1": {
+                "max": 59.13215884639286,
+                "min": 52.97312605461998,
+                "canal": "mono"
+            },
+            "isExists": true,
+            "formato": "16BIT PCM"
+        },
+        "sensorCamara": {
+            "camFrontal": {
+                "resolucion": 7.990272045135498,
+                "ancho": 3264,
+                "altura": 2448
+            },
+            "camTrasera": {
+                "resolucion": 12.97920036315918,
+                "ancho": 4160,
+                "altura": 3120
+            },
+            "isExists": true
+        },
+        "sensorMagnetometro": {
+            "isExists": false
+        },
+        "modelo": "moto g(6) play",
+        "sensorPodometro": {
+            "isExists": true
+        },
+        "fabricante": "motorola",
+        "sensorTermometro": {
+            "isExists": false
+        },
+        "sensorBarometro": {
+            "isExists": false
+        }
+    }
+]

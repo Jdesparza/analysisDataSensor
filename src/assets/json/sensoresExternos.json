@@ -1,0 +1,158 @@
+[
+    {
+        "cal2": [
+            3264,
+            2448
+        ],
+        "sensor": "Cámara",
+        "cal1": [
+            4000,
+            3000
+        ],
+        "fabricante": "N/A",
+        "id": "5l8wNz9JgjI2TZ0ow34P"
+    },
+    {
+        "cal2": [
+            3264,
+            2448,
+            2000
+        ],
+        "sensor": "Acelerómetro",
+        "cal1": [
+            4000,
+            3000,
+            2000
+        ],
+        "fabricante": "N/A",
+        "id": "5l8wNz9JgjI2TZ0ow34P"
+    },
+    {
+        "cal2": [
+            3264,
+            2448,
+            2000
+        ],
+        "sensor": "Giroscopio",
+        "cal1": [
+            4000,
+            3000,
+            2000
+        ],
+        "fabricante": "N/A",
+        "id": "5l8wNz9JgjI2TZ0ow34P"
+    },
+    {
+        "cal2": [
+            3264,
+            3448,
+            2000
+        ],
+        "sensor": "Magnetómetro",
+        "cal1": [
+            4000,
+            3000,
+            5000
+        ],
+        "fabricante": "N/A",
+        "id": "5l8wNz9JgjI2TZ0ow34P"
+    },
+    {
+        "sensor": "Micrófono",
+        "cal1": [
+            39.6,
+            55.2
+        ],
+        "fabricante": "Sonómetro (Sound Meter)",
+        "cal2": [
+            26.3,
+            36.3
+        ],
+        "id": "6te8BtNnvPneNwBXjRoe"
+    },
+    {
+        "fabricante": "FLYMASTER",
+        "cal2": [
+            786.6,
+            2085
+        ],
+        "sensor": "Barómetro",
+        "cal1": [
+            789.54,
+            2055
+        ],
+        "id": "8TuYVubsU8OViPzW1R9z"
+    },
+    {
+        "cal2": [],
+        "sensor": "Ritmo Cardíaco",
+        "cal1": [
+            119
+        ],
+        "fabricante": "Samsung Gear S3 Frontier",
+        "id": "ROSrvCFxz4ZAEYqfANvI"
+    },
+    {
+        "cal2": [
+            8
+        ],
+        "fabricante": "N/A",
+        "sensor": "De Proximidad",
+        "cal1": [
+            0
+        ],
+        "id": "iy6tmlzKgkjEouUyW1Bx"
+    },
+    {
+        "cal2": [
+            20
+        ],
+        "fabricante": "N/A",
+        "sensor": "De Luz",
+        "cal1": [
+            200
+        ],
+        "id": "iy6tmlzKgkjEouUyW1Bx"
+    },
+    {
+        "cal2": [
+            200
+        ],
+        "fabricante": "N/A",
+        "sensor": "Termómetro",
+        "cal1": [
+            20
+        ],
+        "id": "iy6tmlzKgkjEouUyW1Bx"
+    },
+    {
+        "fabricante": "GARMIN etrex",
+        "cal1": [
+            -3.98695,
+            -79.199367,
+            2110,
+            6,
+            3.75
+        ],
+        "sensor": "GPS",
+        "cal2": [
+            -3.98445,
+            -79.199183,
+            2115,
+            4,
+            3.777778
+        ],
+        "id": "onLVMReO2qfkNdZvDpW3"
+    },
+    {
+        "cal1": [
+            10
+        ],
+        "fabricante": "N/A",
+        "cal2": [
+            15
+        ],
+        "sensor": "Podómetro",
+        "id": "usILd8WpmljQQDtcTlQi"
+    }
+]

@@ -131,6 +131,7 @@ export class SensorsExternsComponent implements OnInit {
   isCal2Exist: boolean = false;
   tooltipMessage1 = '';
   tooltipMessage2 = '';
+  crudService;
 
   // Btn Form
   btnValidFormN: string = 'Agregar';
@@ -158,13 +159,12 @@ export class SensorsExternsComponent implements OnInit {
         cal2_value4: [{value: '', disabled: true}],
         cal2_value5: [{value: '', disabled: true}],
       });
+      this.crudService = crudSensorExternoService;
   }
 
   ngOnInit(): void {
     this.nameSensorService.nombreSensor = "Sensores Externos";
     this.crudSensorExternoService.getSensorExterno().subscribe(sensorExterno => {
-      //console.log("GET");
-      //console.log(sensorExterno);
       this.cargarDatos(sensorExterno);
     });
   }
@@ -373,14 +373,13 @@ export class SensorsExternsComponent implements OnInit {
       this.btnValidFormN = 'Agregar'
       this.habilitarInputs(0);
     }
-    const response = await this.crudSensorExternoService.deleteSensorExterno(sensorExterno);
-    //console.log(response);
+    await this.crudSensorExternoService.deleteSensorExterno(sensorExterno)
   }
 
   async onSubmit() {
     this.tooltipMessage1 = this.tooltipMessage2 = '';
     if (!this.isEdit) {
-      await this.crudSensorExternoService.addSensorExterno(this.cargarData());
+      await this.crudSensorExternoService.addSensorExterno(this.cargarData())
     } else {
       //console.log(this.formSenExterno.value);
       await this.crudSensorExternoService.updateSensorExterno(this.id, this.cargarData());
