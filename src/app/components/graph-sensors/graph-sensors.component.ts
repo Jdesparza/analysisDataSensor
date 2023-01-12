@@ -110,8 +110,8 @@ export class GraphSensorsComponent implements OnInit {
       for (var i = 0; i < smartMenosFallos.length; i++) {
         if (this.marcaModeloForm == 'modelo') this.labelsGrafic[i] = smartMenosFallos[i].modelo.toUpperCase();
         else if (this.marcaModeloForm == 'marca') this.labelsGrafic[i] = smartMenosFallos[i].marca.toUpperCase();
-        this.dataErrorGrafic[i] = smartMenosFallos[i].fallo;
-        this.dataExactitudGrafic[i] = (100 - smartMenosFallos[i].fallo);
+        this.dataErrorGrafic[i] = Math.floor(smartMenosFallos[i].fallo * 100000) / 100000;
+        this.dataExactitudGrafic[i] = Math.floor((100 - smartMenosFallos[i].fallo) * 100000)/ 100000;
         if (smartMenosFallos.length >= this.cantDatosMostrarForm && (i + 1) == this.cantDatosMostrarForm) break;
       }
 

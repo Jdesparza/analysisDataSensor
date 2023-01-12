@@ -78,7 +78,7 @@
             <td *ngIf="dato.sensorBarometro.presion_2 == undefined">N/A</td>
             
             <td *ngIf="dato.sensorBarometro.presion_2 != undefined">
-                <span matTooltip="{{ dato.sensorBarometro.presion_1.presion }}">{{ dato.sensorBarometro.presion_2.presion | number: '.0-2' }}</span>
+                <span matTooltip="{{ dato.sensorBarometro.presion_2.presion }}">{{ dato.sensorBarometro.presion_2.presion | number: '.0-2' }}</span>
             </td>
             <td *ngIf="dato.sensorBarometro.presion_2 == undefined">N/A</td>
         </tr>

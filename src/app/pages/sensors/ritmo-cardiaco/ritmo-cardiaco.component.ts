@@ -33,7 +33,7 @@ export class RitmoCardiacoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.nameSensorService.nombreSensor = "Sensor Luz";
+    this.nameSensorService.nombreSensor = "Sensor Ritmo Cardíaco";
     this.data();
     this.buscadorChange();
   }

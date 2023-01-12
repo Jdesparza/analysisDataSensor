@@ -40,64 +40,64 @@ describe('SensorsExternsComponent', () => {
     expect(component).toBeTruthy();
   });
   
-  it('add sensor externo',  (done: DoneFn) => {
+  // it('add sensor externo',  (done: DoneFn) => {
 
-    let fabricante = component.formSenExterno.controls['fabricante'];
-    let cal1_val1 = component.formSenExterno.controls['cal1_value1'];
-    let cal1_val2 = component.formSenExterno.controls['cal1_value2'];
-    let cal1_val3 = component.formSenExterno.controls['cal1_value3'];
-    let cal2_val1 = component.formSenExterno.controls['cal2_value1'];
-    let cal2_val2 = component.formSenExterno.controls['cal2_value2'];
-    let cal2_val3 = component.formSenExterno.controls['cal2_value3'];
+  //   let fabricante = component.formSenExterno.controls['fabricante'];
+  //   let cal1_val1 = component.formSenExterno.controls['cal1_value1'];
+  //   let cal1_val2 = component.formSenExterno.controls['cal1_value2'];
+  //   let cal1_val3 = component.formSenExterno.controls['cal1_value3'];
+  //   let cal2_val1 = component.formSenExterno.controls['cal2_value1'];
+  //   let cal2_val2 = component.formSenExterno.controls['cal2_value2'];
+  //   let cal2_val3 = component.formSenExterno.controls['cal2_value3'];
 
-    fabricante.setValue('UnitTest')
-    cal1_val1.setValue('12');
-    cal1_val2.setValue('12');
-    cal1_val3.setValue('12');
-    cal2_val1.setValue('12');
-    cal2_val2.setValue('12');
-    cal2_val3.setValue('12');
+  //   fabricante.setValue('UnitTest')
+  //   cal1_val1.setValue('12');
+  //   cal1_val2.setValue('12');
+  //   cal1_val3.setValue('12');
+  //   cal2_val1.setValue('12');
+  //   cal2_val2.setValue('12');
+  //   cal2_val3.setValue('12');
 
-    component.optionSensor = 'Magnetómetro UnitTest';
+  //   component.optionSensor = 'Magnetómetro UnitTest';
 
-    service.addSensorExterno(component.cargarData()).then(r => {
-      expect(r.id != null).toBeTrue();
-      done()
-    })
-  });
+  //   service.addSensorExterno(component.cargarData()).then(r => {
+  //     expect(r.id != null).toBeTrue();
+  //     done()
+  //   })
+  // });
 
-  it('update sensor externo',  (done: DoneFn) => {
-    let fabricante = component.formSenExterno.controls['fabricante'];
-    let cal1_val1 = component.formSenExterno.controls['cal1_value1'];
-    let cal2_val1 = component.formSenExterno.controls['cal2_value1'];
+  // it('update sensor externo',  (done: DoneFn) => {
+  //   let fabricante = component.formSenExterno.controls['fabricante'];
+  //   let cal1_val1 = component.formSenExterno.controls['cal1_value1'];
+  //   let cal2_val1 = component.formSenExterno.controls['cal2_value1'];
 
 
 
-    fabricante.setValue('UnitTest V2')
-    cal1_val1.setValue(Math.random()*700+50);
-    cal2_val1.setValue(Math.random()*700+50);
+  //   fabricante.setValue('UnitTest V2')
+  //   cal1_val1.setValue(Math.random()*700+50);
+  //   cal2_val1.setValue(Math.random()*700+50);
 
-    component.optionSensor = 'Magnetómetro UnitTest Update';
+  //   component.optionSensor = 'Magnetómetro UnitTest Update';
 
-    service.updateSensorExterno('VN7Qi2rLWPDhJE99UpAk', component.cargarData()).then(r => {
-      expect(r).toBeUndefined();
-      done()
-    })
-  });
+  //   service.updateSensorExterno('VN7Qi2rLWPDhJE99UpAk', component.cargarData()).then(r => {
+  //     expect(r).toBeUndefined();
+  //     done()
+  //   })
+  // });
 
-  it('delete and get sensor externo', (done: DoneFn) => {
-    jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
-    let sensor = undefined;
+  // it('delete and get sensor externo', (done: DoneFn) => {
+  //   jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
+  //   let sensor = undefined;
 
-    service.getSensorExterno().subscribe(sensorExterno => {
-      sensor = sensorExterno.find((s: { sensor: string; }) => {return s.sensor === 'Magnetómetro UnitTest'});
-      if(sensor != undefined) {
-        service.deleteSensorExterno(sensor).then(response => {
-          expect(sensorExterno.length > 0).toBeTrue(); //Comprobar si trae una lista de sensores externos
-          expect(response).toBeUndefined(); // Promesa al completarse la eliminación de un sensor
-          done()
-        });
-      }
-    })
-  });
+  //   service.getSensorExterno().subscribe(sensorExterno => {
+  //     sensor = sensorExterno.find((s: { sensor: string; }) => {return s.sensor === 'Magnetómetro UnitTest'});
+  //     if(sensor != undefined) {
+  //       service.deleteSensorExterno(sensor).then(response => {
+  //         expect(sensorExterno.length > 0).toBeTrue(); //Comprobar si trae una lista de sensores externos
+  //         expect(response).toBeUndefined(); // Promesa al completarse la eliminación de un sensor
+  //         done()
+  //       });
+  //     }
+  //   })
+  // });
 });

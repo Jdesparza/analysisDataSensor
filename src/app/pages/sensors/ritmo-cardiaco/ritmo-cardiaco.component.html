@@ -29,7 +29,8 @@
             <td>{{ dato.modelo }}</td>
             <td>{{ dato.fabricante }}</td>
             <td *ngIf="calSensorExterno != undefined && (
-                (dato.sensorRitmoCardiaco.calRitmoCardiaco_1 != undefined && calSensorExterno.cal1 != undefined) || dato.sensorRitmoCardiaco.calRitmoCardiaco_1 != undefined)">
+                (dato.sensorRitmoCardiaco.calRitmoCardiaco_1 != undefined && calSensorExterno.cal1 != undefined) || 
+                (dato.sensorRitmoCardiaco.calRitmoCardiaco_2 != undefined && calSensorExterno.cal2 != undefined))">
                 <span matTooltip="{{ errorPercentage(dato) }}">{{ errorPercentage(dato) | number: '.0-4' }}</span>
             </td>
             <td *ngIf="calSensorExterno == undefined || (dato.sensorRitmoCardiaco.calRitmoCardiaco_1 == undefined && dato.sensorRitmoCardiaco.calRitmoCardiaco_2 == undefined)">N/A</td>
